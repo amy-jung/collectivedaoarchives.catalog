@@ -1,5 +1,5 @@
 # DAO Collective Archives
-The DAO Collective Archive is a comprehensive, living open source resource that captures and categorizes various challenges and solutions from existing DAOs. Together, as an open source database that anyone can contribute to, we can use the power of collective intelligence to highlight patterns and improve the development of new and existing DAOs.
+The DAO Collective Catalog is a comprehensive, living open source resource that captures, indexes, and archives various challenges and events from existing DAOs. Together, as an open source database that anyone can contribute to, we can use the power of collective intelligence to highlight patterns and improve the development of new and existing DAOs.
 
 ## Who It's For
 1. 👷🏻‍♀️ **DAO Builders**: This resource helps people building DAOs/orgs by providing insights into commonly used practices that can be used as guidance for creating effective roadmaps.
