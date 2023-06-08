@@ -10,6 +10,7 @@ export const { chains, publicClient } = configureChains([optimism, mainnet], [pu
 
 const { connectors } = getDefaultWallets({
   appName: "Collective DAO Archives Catalog",
+  // ToDo. Use official project id if we want to use wallet connect.
   projectId: "b6f31325a056c9d98d9e71f86f220a48",
   chains,
 });
