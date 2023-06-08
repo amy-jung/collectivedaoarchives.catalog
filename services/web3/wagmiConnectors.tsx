@@ -1,5 +1,3 @@
-"use client";
-
 import { getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { mainnet, optimism } from "viem/chains";
 import { configureChains, createConfig } from "wagmi";
