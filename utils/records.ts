@@ -6,6 +6,7 @@ export type CatalogRecord = {
   slug: string;
   title: string;
   date: string;
+  protocol: string;
   link: string;
   summary: string;
   category: string;

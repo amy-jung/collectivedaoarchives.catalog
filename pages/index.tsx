@@ -8,10 +8,10 @@ type CatalogProps = {
 
 const Home: NextPage<CatalogProps> = ({ records }) => {
   return (
-    <div className="flex min-h-screen flex-col items-center p-8 md:p-24">
-      <h1 className="text-3xl font-bold text-center">Collective DAO Archive Catalog</h1>
+    <div className="flex flex-col items-center p-8 md:p-24">
+      <h1 className="text-4xl font-bold text-center">Collective DAO Archive Catalog</h1>
       <p className="text-center">An open source index of DAO historical events.</p>
-      <h2 className="font-bold text-3xl mt-8 my-4">Catalog</h2>
+      <h2 className="font-bold text-3xl mt-12 my-4">Catalog</h2>
       <div className="flex flex-col gap-8">
         {records.map(record => (
           <div key={record.slug}>
@@ -20,7 +20,9 @@ const Home: NextPage<CatalogProps> = ({ records }) => {
                 <span className="font-bold link">{record.title}</span>
               </Link>
             </h2>
-            <p>{record.summary}</p>
+            <p>
+              {record.summary} / <span className="italic">{record.protocol}</span>
+            </p>
           </div>
         ))}
       </div>

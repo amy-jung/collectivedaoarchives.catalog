@@ -10,6 +10,9 @@ export default function Post({ catalogRecord }: { catalogRecord: CatalogRecord }
       <p className="mb-2">{catalogRecord.summary}</p>
       <ul className="mb-8">
         <li>
+          <span className="font-bold">Protocol:</span> {catalogRecord.protocol}
+        </li>
+        <li>
           <span className="font-bold">Link:</span>{" "}
           <a href={catalogRecord.link} target="_blank" className="link">
             Source
