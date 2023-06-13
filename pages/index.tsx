@@ -10,7 +10,9 @@ type CatalogProps = {
 const Home: NextPage<CatalogProps> = ({ records }) => {
   const [search, setSearch] = useState("");
 
-  const filteredRecords = records.filter(record => record.title.toLowerCase().includes(search.toLowerCase()));
+  const lowerSearch = search.toLowerCase();
+  const filteredRecords =
+    search.length >= 3 ? records.filter(record => record.title.toLowerCase().includes(lowerSearch)) : records;
 
   return (
     <div className="flex flex-col items-center p-8 md:px-24">
@@ -20,7 +22,7 @@ const Home: NextPage<CatalogProps> = ({ records }) => {
       <input
         className="mt-4 mb-8 p-2 border border-gray-300"
         type="text"
-        placeholder="Search records..."
+        placeholder={`Search all ${records.length} records...`}
         value={search}
         onChange={e => setSearch(e.target.value)}
       />
