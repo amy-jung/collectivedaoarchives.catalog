@@ -16,7 +16,7 @@ const Home: NextPage<RecordsProps> = ({ records }) => {
         {records?.map(record => (
           <div key={record.id}>
             <h2 className="text-xl mb-2">
-              <Link href={`/records/${record.id}`}>
+              <Link href={`/records/${record.slug}`}>
                 <span className="font-bold link">{record.title}</span>
               </Link>
             </h2>

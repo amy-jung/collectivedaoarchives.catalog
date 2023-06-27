@@ -14,7 +14,7 @@
     "prisma:generate": "npx dotenv -e .env.local -- prisma generate",
     "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
     "prisma:validate": "npx dotenv -e .env.local -- prisma validate",
-    "production:build": "npx prisma generate && npx prisma migrate deploy && next build"
+    "production:build": "npx prisma generate && next build"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

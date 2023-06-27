@@ -1,12 +1,22 @@
-import { PrismaClient, Record } from "@prisma/client";
+import { PrismaClient, Record, SubCategoryOnRecord } from "@prisma/client";
 import { GetServerSideProps, NextPage } from "next";
 
 interface RecordProps {
   // ToDo. Fix.
-  record: Record & { date: string; category: { name: string } }; // To avoid date serialization issue
+  record: Record & {
+    date: string;
+    category: { name: string };
+    subcategories: (SubCategoryOnRecord & {
+      subCategory: { id: number; name: string };
+    })[];
+  }; // To avoid date serialization issue
 }
 
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
+  console.log("record", record);
+  // Get an array of subcategory names
+  const subCategoryNames = record.subcategories.map(subCategoryOnRecord => subCategoryOnRecord.subCategory.name);
+
   return (
     <div className="mx-auto max-w-xl">
       <h1 className="font-bold text-3xl mb">{record.title}</h1>
@@ -25,29 +35,38 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
         <li>
           <span className="font-bold">Category:</span> {record.category.name}
         </li>
+        <li>
+          <span className="font-bold">Subcategories:</span> {subCategoryNames.join(", ")}
+        </li>
       </ul>
     </div>
   );
 };
 
-// ToDo. Slug instead of ID.
 // ToDo. Instead of using Prisma directly, use a service layer.
 // ToDo. Maybe use ISR?
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  if (!params?.id || Array.isArray(params.id)) {
+  if (!params?.slug || Array.isArray(params.slug)) {
     return {
       notFound: true,
     };
   }
 
-  const { id } = params;
+  const { slug } = params;
   const prisma = new PrismaClient();
   let record: Record | null;
 
   try {
     record = await prisma.record.findUnique({
-      where: { id: Number(id) },
-      include: { category: true },
+      where: { slug: slug },
+      include: {
+        category: true,
+        subcategories: {
+          include: {
+            subCategory: true,
+          },
+        },
+      },
     });
   } catch (err) {
     console.log(err);

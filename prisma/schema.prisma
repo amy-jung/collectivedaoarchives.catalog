@@ -11,21 +11,37 @@ generator client {
 
 // ToDo. Final fields (enabled/approved) and relations (tags?)
 model Record {
-  id           Int      @id @default(autoincrement())
-  title        String
-  summary      String
-  organization String
-  link         String   @unique
-  date         DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  category     Category @relation(fields: [categoryId], references: [id])
-  categoryId   Int
-  // sub-category
+  id            Int                   @id @default(autoincrement())
+  title         String
+  summary       String
+  organization  String
+  link          String                @unique
+  date          DateTime
+  slug          String                @unique
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  category      Category              @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  subcategories SubCategoryOnRecord[]
 }
 
 model Category {
   id     Int      @id @default(autoincrement())
   name   String   @unique
   Record Record[]
+}
+
+model SubCategory {
+  id      Int                   @id @default(autoincrement())
+  name    String                @unique
+  records SubCategoryOnRecord[]
+}
+
+model SubCategoryOnRecord {
+  record        Record      @relation(fields: [recordId], references: [id])
+  recordId      Int
+  subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
+  subCategoryId Int
+
+  @@unique([subCategoryId, recordId])
 }
