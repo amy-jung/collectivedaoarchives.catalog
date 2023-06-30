@@ -31,7 +31,9 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
     <div className="flex flex-col items-center p-8 md:px-24">
       <h1 className="text-4xl font-bold text-center">Collective DAO Archive Catalog</h1>
       <p className="text-center">An open source index of DAO historical events.</p>
-      <h2 className="font-bold text-3xl mt-12 mb-6">Catalog</h2>
+      <h2 className="font-bold text-3xl mt-12 mb-6">
+        Catalog <span>({totalCount})</span>
+      </h2>
       <div className="flex flex-col gap-8 w-[600px]">
         {records?.map(record => (
           <div key={record.id}>
@@ -59,7 +61,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           Previous
         </button>
 
-        <p className="text-gray-700">
+        <p className="text-gray-700 flex flex-col gap-2">
           Page {currentPage} of {totalPages}
         </p>
 
