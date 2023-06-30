@@ -15,13 +15,14 @@ model Record {
   title         String
   summary       String
   organization  String
-  link          String                @unique
+  // ToDo. Should be unique?
+  link          String
   date          DateTime
   slug          String                @unique
   createdAt     DateTime              @default(now())
   updatedAt     DateTime              @updatedAt
-  category      Category              @relation(fields: [categoryId], references: [id])
-  categoryId    Int
+  category      Category?             @relation(fields: [categoryId], references: [id])
+  categoryId    Int?
   subcategories SubCategoryOnRecord[]
 }
 
