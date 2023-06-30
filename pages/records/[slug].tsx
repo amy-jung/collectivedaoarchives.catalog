@@ -5,8 +5,8 @@ interface RecordProps {
   // ToDo. Fix.
   record: Record & {
     date: string;
-    category: { name: string };
-    subcategories: (SubCategoryOnRecord & {
+    category?: { name: string };
+    subcategories?: (SubCategoryOnRecord & {
       subCategory: { id: number; name: string };
     })[];
   }; // To avoid date serialization issue
@@ -15,7 +15,7 @@ interface RecordProps {
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
   console.log("record", record);
   // Get an array of subcategory names
-  const subCategoryNames = record.subcategories.map(subCategoryOnRecord => subCategoryOnRecord.subCategory.name);
+  const subCategoryNames = record.subcategories?.map(subCategoryOnRecord => subCategoryOnRecord.subCategory.name);
 
   return (
     <div className="mx-auto max-w-xl">
@@ -33,10 +33,10 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           </a>
         </li>
         <li>
-          <span className="font-bold">Category:</span> {record.category.name}
+          <span className="font-bold">Category:</span> {record.category?.name}
         </li>
         <li>
-          <span className="font-bold">Subcategories:</span> {subCategoryNames.join(", ")}
+          <span className="font-bold">Subcategories:</span> {subCategoryNames?.join(", ")}
         </li>
       </ul>
     </div>
