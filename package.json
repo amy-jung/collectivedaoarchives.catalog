@@ -4,10 +4,12 @@
   "private": true,
   "workspaces": {
     "packages": [
+      "packages/backend",
       "packages/frontend"
     ]
   },
   "scripts": {
+    "backend": "yarn workspace @catalog/backend dev",
     "start": "yarn workspace @catalog/frontend dev"
   },
   "packageManager": "yarn@3.6.1"
