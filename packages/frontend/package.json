@@ -6,15 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "db:push": "npx dotenv -e .env.local -- prisma db push",
-    "db:seed": "npx dotenv -e .env.local -- prisma db seed",
-    "migrate:dev": "npx dotenv -e .env.local -- prisma migrate dev",
-    "migrate:reset": "npx dotenv -e .env.local -- prisma migrate reset --skip-seed",
-    "prisma:generate": "npx dotenv -e .env.local -- prisma generate",
-    "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
-    "prisma:validate": "npx dotenv -e .env.local -- prisma validate",
-    "production:build": "npx prisma generate && next build"
+    "lint": "next lint"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -41,7 +33,6 @@
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "daisyui": "^3.0.3",
-    "dotenv-cli": "^7.2.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
