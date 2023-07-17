@@ -83,7 +83,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentPage = Number(context.query.page) || 1;
-  let records: Record[] = []; // Change this to your record type
+  let records: Record[] = [];
   let totalCount: number = 0;
 
   try {

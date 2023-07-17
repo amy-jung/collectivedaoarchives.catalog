@@ -43,7 +43,6 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
   );
 };
 
-// ToDo. Instead of using Prisma directly, use a service layer.
 // ToDo. Maybe use ISR?
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (!params?.slug || Array.isArray(params.slug)) {
@@ -53,48 +52,25 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   const { slug } = params;
-  const prisma = new PrismaClient();
-  let record: Record | null;
 
   try {
-    record = await prisma.record.findUnique({
-      where: { slug: slug },
-      include: {
-        category: true,
-        subcategories: {
-          include: {
-            subCategory: true,
-          },
-        },
-      },
-    });
-  } catch (err) {
-    console.log(err);
-    return {
-      notFound: true,
-    };
-  } finally {
-    await prisma.$disconnect();
-  }
+    const res = await fetch(`${process.env.BACKEND_URL}/api/records/${slug}`);
 
-  if (!record) {
+    if (!res.ok) {
+      throw new Error("Record not found");
+    }
+
+    const record = await res.json();
+
+    return {
+      props: { record },
+    };
+  } catch (error) {
+    console.log(error);
     return {
       notFound: true,
     };
   }
-
-  // ToDo. Use https://github.com/blitz-js/superjson#using-with-nextjs?
-  // Convert date to a serializable format
-  const serializedRecord = {
-    ...record,
-    date: record.date.toISOString(),
-    createdAt: record.createdAt.toISOString(),
-    updatedAt: record.updatedAt.toISOString(),
-  };
-
-  return {
-    props: { record: serializedRecord },
-  };
 };
 
 export default RecordPage;

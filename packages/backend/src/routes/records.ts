@@ -1,49 +1,71 @@
+import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 
 const router = express.Router();
+const prisma = new PrismaClient();
+
+const PAGE_SIZE = 10;
 
 router.get("/", async (req: Request, res: Response) => {
-  // Dummy records
-  const records = [
-    {
-      id: 1,
-      title: "Guiding Principles",
-      summary: "",
-      organization: "Index",
-      link: "https://docs.indexcoop.com/our-guiding-principles",
-      date: "2023-06-30T12:12:56.315Z",
-      slug: "guiding-principles",
-      createdAt: "2023-06-30T12:12:56.322Z",
-      updatedAt: "2023-06-30T12:12:56.322Z",
-      categoryId: 1,
-    },
-    {
-      id: 2,
-      title: "Principles for Operational Excellence",
-      summary: "",
-      organization: "Index",
-      link: "https://gov.indexcoop.com/t/10-principles-for-operational-excellence-at-the-index-coop/4369",
-      date: "2023-06-30T12:12:58.661Z",
-      slug: "principles-for-operational-excellence",
-      createdAt: "2023-06-30T12:12:58.664Z",
-      updatedAt: "2023-06-30T12:12:58.664Z",
-      categoryId: 1,
-    },
-    {
-      id: 3,
-      title: "Handbook",
-      summary: "",
-      organization: "Index",
-      link: "https://docs.indexcoop.com/",
-      date: "2023-06-30T12:13:01.576Z",
-      slug: "handbook",
-      createdAt: "2023-06-30T12:13:01.579Z",
-      updatedAt: "2023-06-30T12:13:01.579Z",
-      categoryId: null,
-    },
-  ];
+  const currentPage = Number(req.query.page) || 1;
+  let records: any[]; // Change this to your record type
+  let totalCount: number = 0;
 
-  return res.status(200).json({ records: records, totalCount: records.length });
+  try {
+    const offset = (currentPage - 1) * PAGE_SIZE;
+    [records, totalCount] = await Promise.all([
+      prisma.record.findMany({ take: PAGE_SIZE, skip: offset }),
+      prisma.record.count(),
+    ]);
+
+    // Convert date to a serializable format
+    const serializedRecords = records.map(record => ({
+      ...record,
+      date: record.date.toISOString(),
+      createdAt: record.createdAt.toISOString(),
+      updatedAt: record.updatedAt.toISOString(),
+    }));
+
+    return res.status(200).json({ records: serializedRecords, totalCount });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: "An error occurred while fetching records" });
+  }
+});
+
+router.get("/:slug", async (req: Request, res: Response) => {
+  const { slug } = req.params;
+
+  try {
+    const record = await prisma.record.findUnique({
+      where: { slug },
+      include: {
+        category: true,
+        subcategories: {
+          include: {
+            subCategory: true,
+          },
+        },
+      },
+    });
+
+    if (!record) {
+      return res.status(404).json({ error: "Record not found" });
+    }
+
+    // Convert date to a serializable format
+    const serializedRecord = {
+      ...record,
+      date: record.date.toISOString(),
+      createdAt: record.createdAt.toISOString(),
+      updatedAt: record.updatedAt.toISOString(),
+    };
+
+    return res.status(200).json(serializedRecord);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "An error occurred while fetching the record" });
+  }
 });
 
 export default router;
