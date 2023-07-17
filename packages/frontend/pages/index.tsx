@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PrismaClient, Record } from "@prisma/client";
 import type { GetServerSideProps, NextPage } from "next";
 
 interface RecordsProps {
-  records: Record[];
+  // ToDo. Define types (swagger on backend?)
+  records: any[];
   totalCount: number;
 }
 
@@ -83,7 +83,8 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentPage = Number(context.query.page) || 1;
-  let records: Record[] = [];
+  // ToDo. Define types (swagger on backend?)
+  let records: any[] = [];
   let totalCount: number = 0;
 
   try {

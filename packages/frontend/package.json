@@ -8,11 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "prisma": {
-    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
-  },
   "dependencies": {
-    "@prisma/client": "^4.15.0",
     "@rainbow-me/rainbowkit": "^1.0.1",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
@@ -35,7 +31,6 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
-    "prisma": "^4.15.0",
     "ts-node": "^10.9.1"
   }
 }

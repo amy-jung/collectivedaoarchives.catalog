@@ -1,15 +1,8 @@
-import { PrismaClient, Record, SubCategoryOnRecord } from "@prisma/client";
 import { GetServerSideProps, NextPage } from "next";
 
 interface RecordProps {
-  // ToDo. Fix.
-  record: Record & {
-    date: string;
-    category?: { name: string };
-    subcategories?: (SubCategoryOnRecord & {
-      subCategory: { id: number; name: string };
-    })[];
-  }; // To avoid date serialization issue
+  // ToDo. Define types (swagger on backend?)
+  record: any;
 }
 
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
