@@ -8,6 +8,7 @@ interface RecordProps {
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
   console.log("record", record);
   // Get an array of subcategory names
+  // @ts-ignore
   const subCategoryNames = record.subcategories?.map(subCategoryOnRecord => subCategoryOnRecord.subCategory.name);
 
   return (
