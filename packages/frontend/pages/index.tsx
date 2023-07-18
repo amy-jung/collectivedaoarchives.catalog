@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PrismaClient, Record } from "@prisma/client";
 import type { GetServerSideProps, NextPage } from "next";
 
 interface RecordsProps {
-  records: Record[];
+  // ToDo. Define types (swagger on backend?)
+  records: any[];
   totalCount: number;
 }
 
@@ -82,35 +82,26 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const prisma = new PrismaClient();
   const currentPage = Number(context.query.page) || 1;
-  let records: Record[];
+  // ToDo. Define types (swagger on backend?)
+  let records: any[] = [];
   let totalCount: number = 0;
 
   try {
-    const offset = (currentPage - 1) * PAGE_SIZE;
-    [records, totalCount] = await Promise.all([
-      prisma.record.findMany({ take: PAGE_SIZE, skip: offset }),
-      prisma.record.count(),
-    ]);
+    const res = await fetch(`${process.env.BACKEND_URL}/api/records?page=${currentPage}`);
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+
+    const data = await res.json();
+    records = data.records;
+    totalCount = data.totalCount;
   } catch (err) {
     console.log(err);
-    records = [];
-  } finally {
-    await prisma.$disconnect();
   }
 
-  // ToDo. Use https://github.com/blitz-js/superjson#using-with-nextjs?
-  // Convert date to a serializable format
-  const serializedRecords = records.map(record => ({
-    ...record,
-    date: record.date.toISOString(),
-    createdAt: record.createdAt.toISOString(),
-    updatedAt: record.updatedAt.toISOString(),
-  }));
-
   return {
-    props: { records: serializedRecords, totalCount },
+    props: { records, totalCount },
   };
 };
 

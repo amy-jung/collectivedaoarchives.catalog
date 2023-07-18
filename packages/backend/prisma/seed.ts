@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import csv from "csv-parser";
-import fs from "fs";
-import path from "path";
+import * as csv from "csv-parser";
+import * as fs from "fs";
+import * as path from "path";
 
 const prisma = new PrismaClient();
 
