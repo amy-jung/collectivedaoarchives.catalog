@@ -194,9 +194,11 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
     "@types/cors": ^2
     "@types/express": ^4
+    "@types/node": ^20.4.2
     cors: ^2.8.5
     csv-parser: ^3.0.0
     dotenv: ^16.3.1
+    eslint: 8.42.0
     eslint-config-prettier: ^8.8.0
     eslint-plugin-prettier: ^4.2.1
     express: ^4.18.2
@@ -1247,7 +1249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^20.4.2":
   version: 20.4.2
   resolution: "@types/node@npm:20.4.2"
   checksum: 99e544ea7560d51f01f95627fc40394c24a13da8f041121a0da13e4ef0a2aa332932eaf9a5e8d0e30d1c07106e96a183be392cbba62e8cf0bf6a085d5c0f4149
