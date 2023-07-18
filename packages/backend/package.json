@@ -2,9 +2,13 @@
   "name": "@catalog/backend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "18.x",
+    "yarn": "3.x"
+  },
   "scripts": {
     "dev": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' src/index.ts",
-    "start": "node src/index.js",
+    "start": "node dist/index.js",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "migrate:dev": "prisma migrate dev",
@@ -12,7 +16,7 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:validate": "prisma validate",
-    "production:build": "prisma generate && tsc"
+    "heroku-postbuild": "prisma generate && tsc"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
