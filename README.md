@@ -35,31 +35,31 @@ The project is built using a monorepo structure:
 
 You'll need NodeJS v18+, Yarn and Docker installed.
 
-1. Clone the repo:
+**1. Clone the repo**
 ```bash
 git clone https://github.com/amy-jung/collectivedaoarchives.catalog.git`
 cd collectivedaoarchives.catalog
 ```
 
-2. Install dependencies:
+**2. Install dependencies**
 ```bash
 yarn install
 ```
 
-3. Spin up the Postgres database:
+**3. Spin up the Postgres database**
 ```bash
 docker-compose up -d
 # use «docker-compose down» to stop the database service on docker
 ```
 
-4. Set up environment variables:
+**4. Set up environment variables**
 
 For `packages/backend` copy the `.env.example` file to `.env`.
 For `packages/frontend` copy the `.env.example` file to `.env.local`.
 
 Defaults should work for local development.
 
-5. Create and seed the database
+**5. Create and seed the database**
 
 ```bash
 # Create the database (based on packages/backend/prisma/schema.prisma)
@@ -72,12 +72,15 @@ yarn prisma:generate
 
 You will need to run those commands again when you change the database schema.
 
-6. Start the backend
+**6. Start the backend**
 ```bash
 yarn backend
 ```
 
-7. Start the frontend
+**7. Start the frontend**
+
+In a new terminal window:
+
 ```bash
 yarn frontend
 ```
