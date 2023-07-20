@@ -10,7 +10,11 @@
   },
   "scripts": {
     "backend": "yarn workspace @catalog/backend dev",
-    "start": "yarn workspace @catalog/frontend dev"
+    "frontend": "yarn workspace @catalog/frontend dev",
+    "db:push": "yarn workspace @catalog/backend db:push",
+    "db:seed": "yarn workspace @catalog/backend db:seed",
+    "prisma:generate": "yarn workspace @catalog/backend prisma:generate",
+    "prisma:studio": "yarn workspace @catalog/backend prisma:studio"
   },
   "packageManager": "yarn@3.6.1"
 }
