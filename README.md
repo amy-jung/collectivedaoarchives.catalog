@@ -15,6 +15,8 @@ The Collective DAO Archive Catalog is a comprehensive, living open source resour
 ## Contributing
 Check the [Wiki for how to contribute.](https://github.com/amy-jung/daocollective.archives/wiki/Contributing)
 
+---
+
 ## Development
 
 The project is built using a monorepo structure:
