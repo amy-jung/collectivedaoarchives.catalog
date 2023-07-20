@@ -41,11 +41,6 @@ router.get("/:slug", async (req: Request, res: Response) => {
       where: { slug },
       include: {
         category: true,
-        subcategories: {
-          include: {
-            subCategory: true,
-          },
-        },
       },
     });
 
