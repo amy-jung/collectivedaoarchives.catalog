@@ -34,7 +34,9 @@ async function main() {
       console.log("records.csv parsed, seeding database with", records.length, "records");
       // Dedupe and create categories first
       const categories = [
-        ...new Set(records.filter(record => record.category && record.category.trim() !== "").map(record => record.category)),
+        ...new Set(
+          records.filter(record => record.category && record.category.trim() !== "").map(record => record.category),
+        ),
       ];
 
       // Saving mapping on memory to save some queries
