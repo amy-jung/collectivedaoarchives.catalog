@@ -51,7 +51,7 @@ router.get("/:slug", async (req: Request, res: Response) => {
     // Convert date to a serializable format
     const serializedRecord = {
       ...record,
-      date: record.date.toISOString(),
+      date: record?.date?.toISOString(),
       createdAt: record.createdAt.toISOString(),
       updatedAt: record.updatedAt.toISOString(),
     };

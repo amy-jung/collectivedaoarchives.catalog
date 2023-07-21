@@ -11,19 +11,19 @@ generator client {
 
 // ToDo. Final fields (enabled/approved) and relations (tags?)
 model Record {
-  id            Int                   @id @default(autoincrement())
-  title         String
-  content       String
-  organization  String
+  id           Int       @id @default(autoincrement())
+  title        String
+  content      String
+  organization String
   // ToDo. Should be unique?
-  link          String
-  date          DateTime
-  slug          String                @unique
-  createdAt     DateTime              @default(now())
-  updatedAt     DateTime              @updatedAt
-  category      Category?             @relation(fields: [categoryId], references: [id])
-  categoryId    Int?
-  author        String
+  link         String
+  date         DateTime?
+  slug         String    @unique
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  category     Category? @relation(fields: [categoryId], references: [id])
+  categoryId   Int?
+  author       String
 }
 
 model Category {
@@ -31,4 +31,3 @@ model Category {
   name   String   @unique
   Record Record[]
 }
-

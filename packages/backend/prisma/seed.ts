@@ -68,8 +68,7 @@ async function main() {
         let recordData = {
           title: record.title,
           slug: slugAuto,
-          // TODO: parse date
-          date: new Date(),
+          date: record.date ? new Date(record.date) : null,
           organization: record.organization,
           link: record.link,
           content: record.content,
