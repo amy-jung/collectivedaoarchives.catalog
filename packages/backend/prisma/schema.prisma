@@ -13,7 +13,7 @@ generator client {
 model Record {
   id            Int                   @id @default(autoincrement())
   title         String
-  summary       String
+  content       String
   organization  String
   // ToDo. Should be unique?
   link          String
@@ -23,7 +23,7 @@ model Record {
   updatedAt     DateTime              @updatedAt
   category      Category?             @relation(fields: [categoryId], references: [id])
   categoryId    Int?
-  subcategories SubCategoryOnRecord[]
+  author        String
 }
 
 model Category {
@@ -32,17 +32,3 @@ model Category {
   Record Record[]
 }
 
-model SubCategory {
-  id      Int                   @id @default(autoincrement())
-  name    String                @unique
-  records SubCategoryOnRecord[]
-}
-
-model SubCategoryOnRecord {
-  record        Record      @relation(fields: [recordId], references: [id])
-  recordId      Int
-  subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
-  subCategoryId Int
-
-  @@unique([subCategoryId, recordId])
-}

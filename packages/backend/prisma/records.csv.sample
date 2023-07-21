@@ -1,0 +1,472 @@
+origin,title,link,date,content,organization,author,category
+https://gov.indexcoop.com/t/update-to-snapshot-voting/4325,Update To Snapshot Voting,https://gov.indexcoop.com/t/update-to-snapshot-voting/4325,"Jul 5, 2022 2:54 PM","<p>As Index Coop moves towards a leaner model of governance, contributors will be tasked with the responsibility of creating snapshot votes.</p>
+<p>The process for creating an IIP and snapshot is detailed <a href=""https://gov.indexcoop.com/t/index-improvement-proposals-iip-process/4249"">here <span class=""badge badge-notification clicks"" title=""15 clicks"">15</span></a>.</p>
+<p>Any wallet with 1000 INDEX is capable of creating a snapshot vote. For the sake of continuity, it is recommended that the snapshot is created by the contributor who created the original IIP forum post. It is also recommended that a 24 hour waiting period is observed after posting the IIP to facilitate proper community discussion. This is reduced from the original period of 48 hours in an effort to improve efficiency.</p>",Index,afromac,
+https://gov.indexcoop.com/t/iip-153-implement-dynamic-quorum-for-metagovernance/4187,IIP-153: Implement Dynamic Quorum for Metagovernance,https://gov.indexcoop.com/t/iip-153-implement-dynamic-quorum-for-metagovernance/4187,"Apr 22, 2022 1:03 PM","<p>IIP Number: 153<br>
+Title: Implement Dynamic Quorum for MetaGovernance<br>
+Status: Proposed<br>
+Author(s): <a class=""mention"" href=""/u/mel.eth"">@mel.eth</a><br>
+GovReview: <a class=""mention"" href=""/u/pujimak_in"">@pujimak_in</a><br>
+Required: Modifies <a href=""https://gov.indexcoop.com/t/iip-51-form-a-meta-governance-committee/1792"">IIP No. 51 <span class=""badge badge-notification clicks"" title=""5 clicks"">5</span></a></p>
+<h2>
+<a name=""simple-summary-1"" class=""anchor"" href=""#simple-summary-1""></a>Simple Summary</h2>
+<p>Quorum for metagovernance voting will be reduced linearly from 5% down to 1% as support increases (on a per-proposal basis) to inspire greater decentralization and allow for greater participation in Index Coop metagovernance by the community.  At present, the 5% quorum is a holistic blocker to participation given it is rarely achieved.  This change allows for overwhelming support of a proposal to be executed directly; both reducing the workload on the MGC when a majority opinion is clear and creating a more decentralized decision framework for metagovernance voting.</p>
+<h2>
+<a name=""abstract-2"" class=""anchor"" href=""#abstract-2""></a>Abstract</h2>
+<p>This proposal changes the quorum calculation for metagoveranance voting from a flat 5% (with quorum failures going to the 5-member <a href=""https://gov.indexcoop.com/t/context-and-discussion-metagovernance-voting/4178"">MGC <span class=""badge badge-notification clicks"" title=""1 click"">1</span></a> to decide) to a linearly reduced quorum number as the percentage of votes cast FOR or AGAINST deviates from 50%.</p>
+<h2>
+<a name=""motivation-3"" class=""anchor"" href=""#motivation-3""></a>Motivation</h2>
+<p>‌<br>
+At present quorum is rarely achieved during metagoveranance voting.  At issue, non-whale interest is not sufficient to pass metagovernance votes despite regular INDEX voting.  The fallback mechanism of the MGC will remain in place for contentious votes with low participation; however, the lack of ability to influence metagovernance by a majority of INDEX holders with no clear path to influence is suppressing the price of INDEX by creating a non-competitive metagovernance environment, currently advantageous only to large token holders and MGC members.<br>
+‌</p>
+<h2>
+<a name=""specification-4"" class=""anchor"" href=""#specification-4""></a>Specification</h2>
+<h3>
+<a name=""rationale-5"" class=""anchor"" href=""#rationale-5""></a>Rationale</h3>
+<p>Quorum is a hurdle-rate that is in place to ensure that there is sufficient contextual input into a vote (using voting token <em>amount</em> as a proxy for interest+context).  Quorum being too low means not enough context from the voting body has been aggregated, too high means that even well-considered voting by many won’t effect the desired outcome without MGC assistance.</p>
+<p>A dynamic quorum essentially calls for greater participation depending on the binary diversity of opinions on that proposal.   With the benefit of a fallback mechanism (the MGC) we can maintain the necessary forcing function (IC can’t re-run another protocol’s proposal due to insufficient quorum) so that a considered decision is registered in every case.</p>
+<p><em>For example:</em> At full support, quorum drops to 1%; meaning fewer voters can influence the vote.  Quorum increases up to a maximum of 5%, should diversity in the cast-votes develop.  In this way, contentious votes require greater participation and therefore context to pass without the MGC stepping in.</p>
+<p>The drawback here is that achieving quorum on a typical proposal has finality (beyond a static quorum, the indeterminant result is considered executable prior to the end of the voting period).  Dynamic quorum means that achievement of quorum cannot be determined until the end of the vote.  The MGC would need to be prepared to render a decision should the calculated quorum not be achieved once IC voting has ended.</p>
+<p></p><div class=""lightbox-wrapper""><a class=""lightbox"" href=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/original/2X/7/7f6c808ab9446d97150410943bc6218d61d5250d.png"" data-download-href=""/uploads/short-url/ibf6pHqEwzBttvmAcMXjOIVkjyl.png?dl=1"" title=""image""><img src=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/7f6c808ab9446d97150410943bc6218d61d5250d_2_350x374.png"" alt=""image"" data-base62-sha1=""ibf6pHqEwzBttvmAcMXjOIVkjyl"" width=""350"" height=""374"" srcset=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/7f6c808ab9446d97150410943bc6218d61d5250d_2_350x374.png, https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/7f6c808ab9446d97150410943bc6218d61d5250d_2_525x561.png 1.5x, https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/7f6c808ab9446d97150410943bc6218d61d5250d_2_700x748.png 2x"" data-small-upload=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/7f6c808ab9446d97150410943bc6218d61d5250d_2_10x10.png"" loading=""lazy"" style=""aspect-ratio: 350 / 374;""><div class=""meta"">
+<svg class=""fa d-icon d-icon-far-image svg-icon"" aria-hidden=""true""><use href=""#far-image""></use></svg><span class=""filename"">image</span><span class=""informations"">811×868 35.4 KB</span><svg class=""fa d-icon d-icon-discourse-expand svg-icon"" aria-hidden=""true""><use href=""#discourse-expand""></use></svg>
+</div></a></div><p></p>
+<h3>
+<a name=""technical-specification-6"" class=""anchor"" href=""#technical-specification-6""></a>Technical Specification</h3>
+<p>‌<br>
+The calculation for Quorum on binary votes will be:</p>
+<pre><code class=""hljs language-ini""><span class=""hljs-attr"">Q</span> = -<span class=""hljs-number"">0.1</span>*S + <span class=""hljs-number"">0.1</span><span class=""hljs-comment"">; Q &gt;= 0.01</span>
+<span class=""hljs-attr"">S</span> = the greater of: |FOR| or |AGAINST|  (as a percentage value of all votes cast)
+</code></pre>
+<p>Dynamic quorum examples:</p>
+<div class=""md-table"">
+<table>
+<thead>
+<tr>
+<th>Quorum %</th>
+<th>% FOR or AGAINST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>2.5%</td>
+<td>75%</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>50%</td>
+</tr>
+</tbody>
+</table>
+</div><p>‌<br>
+On votes with greater than two choices, quorum will remain at a static 5%.</p>
+<p>Add the following text to posted metagovernance votes:<br>
+<em>This metagovernance proposal is subject to a dynamic quorum requirement.  Quorum for the INDEX community voting on this metagovernance proposal will increase from 1% to a maximum of 5% as support for the majority result decreases from 100%.  Should quorum not be achieved voting here will be rendered void and the MGC will decide on this proposal as outlined <a href=""https://gov.indexcoop.com/t/iip-51-form-a-meta-governance-committee/1792"">here <span class=""badge badge-notification clicks"" title=""5 clicks"">5</span></a>.  More on dynamic quorum calculation can be found <a href=""https://gov.indexcoop.com/t/iip-153-implement-dynamic-quorum-for-metagovernance/4187"">here</a>.</em></p>
+<h2>
+<a name=""changelog-7"" class=""anchor"" href=""#changelog-7""></a>Changelog</h2>
+<ul>
+<li>Rev 1: 09 May 2022 Changed minimum quorum from 0% to 1% and updated proposal body accordingly.</li>
+</ul>
+<h2>
+<a name=""copyright-8"" class=""anchor"" href=""#copyright-8""></a>Copyright</h2>
+<p>‌Copyright and related rights waived via<a href=""https://creativecommons.org/publicdomain/zero/1.0/""> CC0</a>.</p>",Index,mel.eth,
+https://gov.indexcoop.com/t/index-coop-invites-market-makers-to-partnership-talks/4455,Index Coop Invites Market Makers To Partnership Talks,https://gov.indexcoop.com/t/index-coop-invites-market-makers-to-partnership-talks/4455,"Dec 5, 2022 5:03 PM","<p>Reviewers: <a class=""mention"" href=""/u/jordan.t"">@jordan.t</a> <a class=""mention"" href=""/u/anthonyb.eth"">@anthonyb.eth</a> <a class=""mention"" href=""/u/mrmadila"">@MrMadila</a> <a class=""mention"" href=""/u/afromac"">@afromac</a>.</p>
+<p>Index Coop has enjoyed a valuable relationship with Wintermute over the last year plus - the genesis of the relationship beginning <a href=""https://gov.indexcoop.com/t/iip-83-wintermute-market-making-proposal/2575"">here <span class=""badge badge-notification clicks"" title=""9 clicks"">9</span></a>. Wintermute has been our primary market maker since and this relationship has helped Index Coop list its governance token and products at centralized exchanges and also helped enable liquidity for our governance token and some products. Wintermute’s venture arm also holds an $INDEX position - participating in our Treasury Diversification round in ‘21.</p>
+<p>However, now we’re in a new market cycle, past our agreement term end dates with Wintermute, with larger institutional partners looking to work with Index Coop (with greater market making thresholds to meet), it is in the interests of token holders to take a fresh look at our market making.</p>
+<p>Thus, we invite crypto market makers to <a href=""mailto:institutions@indexcoop.com"">connect with us</a> to join partnership talks. We aim to learn:</p>
+<ol>
+<li>Partnership ideas generally and a range of commercial terms</li>
+<li>Which potential market making partners are best placed to help us secure larger scale institutional partnerships</li>
+</ol>
+<p>The high level goals of market making at Index Coop are:</p>
+<ol>
+<li>Enable provision of sufficient liquidity for $INDEX and relevant products</li>
+<li>Enable meeting of diligence requirements of large institutional partners who require a number of associated, reputable market makers</li>
+</ol>
+<p>More detail can be discussed in talks. We look forward to hearing from market makers via the email link above.</p>
+<p>Thank you.</p>",Index,DevOnDeFi,
+https://gov.indexcoop.com/t/iip-170-modify-the-organization-structure/4468,IIP-170: Modify the Organization Structure,https://gov.indexcoop.com/t/iip-170-modify-the-organization-structure/4468,"Dec 16, 2022 3:13 PM","<p><strong>IIP:</strong> 170<br>
+<strong>Title:</strong> Modify the Organization Structure<br>
+<strong>Status:</strong> Proposed<br>
+<strong>Author(s):</strong> <a class=""mention"" href=""/u/anthonyb.eth"">@anthonyb.eth</a> (On behalf of the Index Coop Council)<br>
+<strong>Reviewed by:</strong> <a class=""mention"" href=""/u/edwardk"">@edwardk</a> <a class=""mention"" href=""/u/devondefi"">@DevOnDeFi</a> <a class=""mention"" href=""/u/afromac"">@afromac</a><br>
+<strong>Created:</strong> 16 December 2022<br>
+<strong>Quorum:</strong>  473,884 (10% of <a href=""https://dune.com/queries/569413"" rel=""noopener nofollow ugc"">Votable Supply <span class=""badge badge-notification clicks"" title=""2 clicks"">2</span></a>)</p>
+<h1>
+<a name=""summary-1"" class=""anchor"" href=""#summary-1""></a>Summary</h1>
+<p>This proposal modifies the organizational structure of the Index Cooperative to increase robustness, operational efficiency, and empower the token holders with hard power, namely the ability to directly replace Safe signers.</p>
+<p>Index Coop will adopt <a href=""https://www.metropolis.space/"" rel=""noopener nofollow ugc"">Metropolis <span class=""badge badge-notification clicks"" title=""12 clicks"">12</span></a> (formerly known as Orca), a lightweight permissions wrapper around a Safe multi-sig that turns each Safe into a “<a href=""https://docs.metropolis.space/docs/pod-basics/pod-basics"" rel=""noopener nofollow ugc"">Pod <span class=""badge badge-notification clicks"" title=""7 clicks"">7</span></a>.” This creates an on-chain organization structure where power is delegated from token-holders to elected Pod Members.</p>
+<p>The implementation proposed is intended to be version one, and this structure should continue to evolve over time.</p>
+<p>There will be three high-level Pods that are responsible for the three main functions of Index Coop:</p>
+<p><strong>Engineering:</strong> To deploy and maintain Index Coop smart contracts and products</p>
+<p><strong>Operations:</strong> To serve the DAO’s off-chain needs such as product design, marketing, partnerships, etc.</p>
+<p><strong>Treasury:</strong> To manage the Index Coop treasury, pay expenses, collect revenue, and deploy capital to investments</p>
+<hr>
+<p></p><div class=""lightbox-wrapper""><a class=""lightbox"" href=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/original/2X/7/74d9ac0c3990ff1788e4a002e32279ddb831cdc0.jpeg"" data-download-href=""/uploads/short-url/gFHKiKtkfbZoEinkBMcL73zJ93W.jpeg?dl=1"" title="""" rel=""noopener nofollow ugc""><img src=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/74d9ac0c3990ff1788e4a002e32279ddb831cdc0_2_690x496.jpeg"" alt="""" data-base62-sha1=""gFHKiKtkfbZoEinkBMcL73zJ93W"" role=""presentation"" width=""690"" height=""496"" srcset=""https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/74d9ac0c3990ff1788e4a002e32279ddb831cdc0_2_690x496.jpeg, https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/74d9ac0c3990ff1788e4a002e32279ddb831cdc0_2_1035x744.jpeg 1.5x, https://global.discourse-cdn.com/standard10/uploads/theindexdao/optimized/2X/7/74d9ac0c3990ff1788e4a002e32279ddb831cdc0_2_1380x992.jpeg 2x"" data-dominant-color=""F9F9F7"" loading=""lazy"" style=""aspect-ratio: 690 / 496;""><div class=""meta"">
+<svg class=""fa d-icon d-icon-far-image svg-icon"" aria-hidden=""true""><use href=""#far-image""></use></svg><span class=""filename""></span><span class=""informations"">1600×1152 133 KB</span><svg class=""fa d-icon d-icon-discourse-expand svg-icon"" aria-hidden=""true""><use href=""#discourse-expand""></use></svg>
+</div></a></div><p></p>
+<hr>
+<p><em>Key to the Diagram Above</em></p>
+<div class=""md-table"">
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Name</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EK</td>
+<td>Defensible LLC</td>
+<td>0xce0DD00aa80E8a5485070c8Fea9F110e2F46Adac</td>
+</tr>
+<tr>
+<td>FW</td>
+<td>Flattest White</td>
+<td>0xc8e7817C4AC86EF3aFC525F150091391205b727C</td>
+</tr>
+<tr>
+<td>SH</td>
+<td>Sid Hemraj</td>
+<td>0xEdd0c2F919646BeB1548BEF70150B6A15a5Fb213</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Dev</td>
+<td>0xD19e5913C33E7d69a7f66c090760B3e611106b9A</td>
+</tr>
+<tr>
+<td>AB</td>
+<td>anthonyb.eth</td>
+<td>0x57D0C0f6458284884F0654CAa53811D013bB6f20</td>
+</tr>
+<tr>
+<td>JT</td>
+<td>Jordan T</td>
+<td>0x77B90e83E682630086d07fa88EA915C11E149844</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>afromac</td>
+<td>0xB639DAd047432727309e2BBBaB74cE204E3a9623</td>
+</tr>
+<tr>
+<td>MM</td>
+<td>Mr Madila</td>
+<td>0xA3EB02Ffa9bF1965629fa2731b16fFEc87b86848</td>
+</tr>
+<tr>
+<td>AG</td>
+<td>C-Squared LLC</td>
+<td>0x60fAB7c35E3728B46a88f82ddeee46dF1d414A45</td>
+</tr>
+</tbody>
+</table>
+</div><hr>
+<p>The Engineering, Operations, and Treasury Pod each have three representatives chosen by INDEX holders. Because Index doesn’t have a governor contract and due to the current limitations of Snapshot, a “Delegate Safe” will enact token holder decisions. In time, the Delegate Safe will be removed and INDEX holders can change Pod representatives directly.</p>
+<p>Pods can create sub-Pods as shown in the diagram above. This proposal creates the structure as shown in the diagram with three high-level Pods and a number of function-specific sub-Pods.</p>
+<p>As a result of these changes and <a href=""https://gov.indexcoop.com/t/iip-165-contributor-ownership-plan/4423"">IIP-164 <span class=""badge badge-notification clicks"" title=""8 clicks"">8</span></a>, the Index Coop Council (ICC) will cease to exist. The implementation of this structure should occur on or before December 31, 2022.</p>
+<h1>
+<a name=""motivation-2"" class=""anchor"" href=""#motivation-2""></a>Motivation</h1>
+<p>This proposal establishes a persistent system not reliant on a council to make difficult decisions, however, it will maintain the efficiency of decision-making and continue to provide a face to the organization that can interface with on and off-chain entities.</p>
+<p>The system is built upon token holders’ sovereignty and their willing, explicit delegation of this power to various component parts, whether they be one or more levels removed.</p>
+<p>The DAO must minimize human involvement in its operations to maximize security, robustness, and credible decentralization. Moving to this new organizational structure reduces the reliance on individuals; when human involvement is necessary, those individuals will be appointed and changed by token holders.</p>
+<h1>
+<a name=""specification-3"" class=""anchor"" href=""#specification-3""></a>Specification</h1>
+<h2>
+<a name=""overview-4"" class=""anchor"" href=""#overview-4""></a>Overview</h2>
+<p>On-chain entities’ organizational structures are constantly evolving and Index Coop is adopting best practices from around the ecosystem. This proposal has received much iteration and feedback from advisors and community members to accomplish the following objectives:</p>
+<ol>
+<li>
+<p>Reduce reliance on individuals</p>
+</li>
+<li>
+<p>Add on-chain governance</p>
+</li>
+<li>
+<p>Raise the primacy of token-holders</p>
+</li>
+</ol>
+<p>In addition, the proposed organizational structure was designed with the aim of keeping Index Coop DAO as nimble as possible. As a result, it broadly increases the decentralization regarding large and important decisions and outsources day-to-day, low-level, operational decisions to appointed Pod members.</p>
+<h2>
+<a name=""structure-5"" class=""anchor"" href=""#structure-5""></a>Structure</h2>
+<p>Currently, several multi-signature Safes are owned by the DAO, some of which are inactive. To simplify the structure, only active Safes (i.e., those with assets or permissions) are included in the new organizational structure.</p>
+<p>The INDEX token-holders (“token-holders”) will elect representatives (i.e., signers) to the following:</p>
+<ul>
+<li>Delegate Safe (5)</li>
+<li>Operations Pod (3)</li>
+<li>Engineering Pod (3</li>
+<li>Treasury Pod (3)</li>
+</ul>
+<p>Each Pod has the discretion to create or modify sub-pods without direct token-holder approval.</p>
+<p>Token-holders are also responsible for electing the Director(s) of the Cayman Foundation.</p>
+<p>This proposal includes the initial representatives to each Pod and makes changes to the Directors of the Cayman Foundation. At any time, an IIP can be called to make changes to Pod representatives, Directors, or members of the Delegate Safe.</p>
+<h3>
+<a name=""directors-of-the-cayman-foundation-6"" class=""anchor"" href=""#directors-of-the-cayman-foundation-6""></a>Directors of the Cayman Foundation</h3>
+<p>This proposal reduces the number of Directors from three to one with the sole Director as Index Coop’s fiduciary service provider.</p>
+<h3>
+<a name=""delegate-safe-7"" class=""anchor"" href=""#delegate-safe-7""></a>Delegate Safe</h3>
+<p>The delegate safe is a temporary measure required due to technical feasibility. In the future, token-holders can change Pod representatives directly via a token vote. Because Index does not have a governor contract and due to limitations in Snapshot, the Delegate Safe will enact decisions made by token holders on-chain.</p>
+<p>The delegate safe will begin with a 3-of-5 Safe with the original signers as follows:</p>
+<div class=""md-table"">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Defensible LLC</td>
+<td>0xce0DD00aa80E8a5485070c8Fea9F110e2F46Adac</td>
+</tr>
+<tr>
+<td>Dev</td>
+<td>0xD19e5913C33E7d69a7f66c090760B3e611106b9A</td>
+</tr>
+<tr>
+<td>afromac</td>
+<td>0xB639DAd047432727309e2BBBaB74cE204E3a9623</td>
+</tr>
+<tr>
+<td>anthonyb.eth</td>
+<td>0x57D0C0f6458284884F0654CAa53811D013bB6f20</td>
+</tr>
+<tr>
+<td>Professional Director Firm</td>
+<td>0xdF4C03660aD86C20aDEccA95a86f5044f38FcA56</td>
+</tr>
+</tbody>
+</table>
+</div><h3>
+<a name=""operations-pod-8"" class=""anchor"" href=""#operations-pod-8""></a>Operations Pod</h3>
+<p>The Operations Pod is a 3-of-5 Safe with 3 individual representatives, supported by the Engineering Pod and Treasury Pod as the additional two signers. The individual members will assist with day-to-day decisions and interface with partners and token-holders.</p>
+<p>Currently, there would be no plans for the Operations Pod to handle any funds and most of the activity falling under its purview would be off-chain.</p>
+<p>The Operations Pod is the manager of the Contributor Pod. The Operations Pod will be responsible for managing personnel, roles, and remits, and all proposed hiring and offboarding decisions are subject to 3-of-5 approval. This action will take place on-chain by removing the contributor from the Contributors Pod. The initial individual representatives to the Operations Pod are Dev, Anthony B, and Jordan T.</p>
+<h4>
+<a name=""contributors-pod-operationscontributors-9"" class=""anchor"" href=""#contributors-pod-operationscontributors-9""></a>Contributors Pod (operations.contributors)</h4>
+<p>The Contributors Pod is a sub-Pod of the Operations Pod that enables all paid contributors of the DAO to exist on-chain via Metropolis’s Pod Member NFT system. This NFT acts as a “key card”, so to speak.</p>
+<p>There are no immediate plans to use this feature set of Metropolis, but the Contributors Pod is useful for conducting on-chain votes by internal contributors on Snapshot (using the <a href=""https://snapshot.org/#/strategy/orca-pod"" rel=""noopener nofollow ugc"">orca-pod strategy <span class=""badge badge-notification clicks"" title=""1 click"">1</span></a>). It can also be used for token-gating access to things such as the internal contributor Discord Server. In addition to token-gating access, the Contributors Pod provides an additional layer of on-chain governance, which creates an auditable structure with a higher degree of decentralization.</p>
+<p>The Contributors Pod will have a 1-of-n threshold because it will hold no funds and have no permission. All active paid contributors will be members of this Pod and issued NFTs.</p>
+<h3>
+<a name=""engineering-pod-10"" class=""anchor"" href=""#engineering-pod-10""></a>Engineering Pod</h3>
+<p>The Engineering Pod is a 3-of-5 Safe with 3 individual representatives, supported by the Operations Pod and Treasury Pod as the additional two signers. The individual representatives will assist with deploying and maintaining smart contracts on behalf of the DAO. The permissions or keys to all Index Coop smart contracts are set to the Engineering sub-Pod, engineering.ops (eth:<a href=""https://etherscan.io/address/0x6904110f17feD2162a11B5FA66B188d801443Ea4"" rel=""noopener nofollow ugc"">0x6904110f17feD2162a11B5FA66B188d801443Ea4 <span class=""badge badge-notification clicks"" title=""1 click"">1</span></a>). The initial individual representatives to the Engineering Pod are Defensible LLC, Flattest White, and Sid Hemraj.</p>
+<h3>
+<a name=""treasury-pod-11"" class=""anchor"" href=""#treasury-pod-11""></a>Treasury Pod</h3>
+<p>The “Treasury Account” (eth:<a href=""https://etherscan.io/address/0x9467cfadc9de245010df95ec6a585a506a8ad5fc"" rel=""noopener nofollow ugc"">0x9467cfadc9de245010df95ec6a585a506a8ad5fc <span class=""badge badge-notification clicks"" title=""1 click"">1</span></a>) will become the “Treasury Pod.” The Treasury Pod is a 3-of-5 Safe with 3 individual representatives, supported by the Operations Pod and Engineering Pod as the additional two signers. The individual representatives will assist with managing the assets of the DAO, paying expenses, processing payroll, and maintaining the runway. The initial individual representatives to the Treasury Pod are afromac, Mr Madila, and C-Squared LLC.</p>
+<p>The Treasury Pod also has a number of Safes under its management that are used to segregate assets including:</p>
+<div class=""md-table"">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>treasury.ops</td>
+<td>0xfafd604d1cc8b6b3b6cc859cf80fd902972371c1</td>
+</tr>
+<tr>
+<td>treasury.invest</td>
+<td>0x462a63d4405a6462b157341a78fd1babfd3f8065</td>
+</tr>
+<tr>
+<td>treasury.liquidity</td>
+<td>0x3a36b94689f303aaf9bfe761068efb8f78912023</td>
+</tr>
+<tr>
+<td>treasury.ownership</td>
+<td>0x236815b32b50cc80F5C6348396b1A9B09Fd3E7f7</td>
+</tr>
+<tr>
+<td>treasury.ops.card</td>
+<td>0x86004cf5f38d897fe17abc9d1d624338b47ee992</td>
+</tr>
+<tr>
+<td>treasury.liquidity.fast</td>
+<td>not yet created</td>
+</tr>
+</tbody>
+</table>
+</div><h2>
+<a name=""summary-12"" class=""anchor"" href=""#summary-12""></a>Summary</h2>
+<ol>
+<li>
+<p>Adopt Metropolis</p>
+</li>
+<li>
+<p>Update the Directors of the Cayman Foundation</p>
+</li>
+<li>
+<p>Create the following new Safes:</p>
+<ol>
+<li>
+<p>delegate_safe</p>
+</li>
+<li>
+<p>engineering</p>
+</li>
+<li>
+<p>operations</p>
+</li>
+<li>
+<p>treasury.liquidity.fast</p>
+</li>
+<li>
+<p>operations.contributors</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Update the Signing Structure of the Treasury Pod</p>
+</li>
+<li>
+<p>Add the Metropolis Pod features to the following Safes</p>
+</li>
+</ol>
+<div class=""md-table"">
+<table>
+<thead>
+<tr>
+<th>Safe Name</th>
+<th>Address</th>
+<th>Manager</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>delegate_safe</td>
+<td>not yet created</td>
+<td>n/a</td>
+</tr>
+<tr>
+<td>engineering</td>
+<td>0x6904110f17feD2162a11B5FA66B188d801443Ea4</td>
+<td>delegate_safe</td>
+</tr>
+<tr>
+<td>treasury</td>
+<td>0x9467cfadc9de245010df95ec6a585a506a8ad5fc</td>
+<td>delegate_safe</td>
+</tr>
+<tr>
+<td>operations</td>
+<td>not yet created</td>
+<td>delegate_safe</td>
+</tr>
+<tr>
+<td>treasury.ops</td>
+<td>0xfafd604d1cc8b6b3b6cc859cf80fd902972371c1</td>
+<td>treasury</td>
+</tr>
+<tr>
+<td>treasury.invest</td>
+<td>0x462a63d4405a6462b157341a78fd1babfd3f8065</td>
+<td>treasury</td>
+</tr>
+<tr>
+<td>treasury.liquidity</td>
+<td>0x3a36b94689f303aaf9bfe761068efb8f78912023</td>
+<td>treasury</td>
+</tr>
+<tr>
+<td>treasury.ownership</td>
+<td>0x236815b32b50cc80F5C6348396b1A9B09Fd3E7f7</td>
+<td>treasury</td>
+</tr>
+<tr>
+<td>treasury.ops.card</td>
+<td>0x86004cf5f38d897fe17abc9d1d624338b47ee992</td>
+<td>treasury.ops</td>
+</tr>
+<tr>
+<td>treasury.liquidity.fast</td>
+<td>not yet created</td>
+<td>treasury.liquidity</td>
+</tr>
+<tr>
+<td>operations.contributors</td>
+<td>not yet created</td>
+<td>operations</td>
+</tr>
+</tbody>
+</table>
+</div><hr>
+<h1>
+<a name=""voting-13"" class=""anchor"" href=""#voting-13""></a>Voting</h1>
+<p><strong>FOR</strong>: Do modify the organization structure<br>
+<strong>AGAINST</strong>: Don’t modify the organization structure</p>",Index,anthonyb.eth,
+https://gov.indexcoop.com/t/iip-172-create-the-internal-methodologist-committee/4504,IIP 172: Create the Internal Methodologist Committee,https://gov.indexcoop.com/t/iip-172-create-the-internal-methodologist-committee/4504,"Feb 17, 2023 6:14 PM","<p>IIP: 172<br>
+Title: Create the Internal Methodologist Committee<br>
+Status: Proposed<br>
+Author(s): <a class=""mention"" href=""/u/anthonyb.eth"">@anthonyb.eth</a><br>
+Reviewed by: <a class=""mention"" href=""/u/afromac"">@afromac</a><br>
+Created: 17 February 2023<br>
+Quorum: 483,370 (10% of Votable Supply)</p>
+<h1>
+<a name=""introduction-1"" class=""anchor"" href=""#introduction-1""></a>Introduction</h1>
+<p>This proposal aims to create an Internal Methodologist Committee (IMC) within Index Coop. IMC will be responsible for monitoring the indices of products that do not have third-party methodologists. Additionally, the committee will ensure that third-party methodologists adhere to Index Coop regulations about changes and rebalances of index methodology. The IMC will initially comprise three members with experience in managing and maintaining on-chain indices, and more members can be added or removed through the Index Improvement Proposal (IIP) process.</p>
+<h1>
+<a name=""motivation-2"" class=""anchor"" href=""#motivation-2""></a>Motivation</h1>
+<p>Index Coop currently supports several products that do not rely on a third-party methodologist to determine the methodology. We expect to launch more products like this in the future. It is necessary to adapt and improve product methodologies over time to execute the best possible version of the strategy, manage risk, and improve liquidity conditions for the underlying assets. Oversight is required to ensure that existing methodologies are consistently executed and that any changes or updates are communicated to the broader community.</p>
+<p>To ensure best practices in maintaining and improving methodologies, it is necessary to delegate this responsibility to specific Index Coop contributors with expertise in managing on-chain indices. This proposal seeks to create an IMC to assume responsibility for this role.</p>
+<h1>
+<a name=""specification-3"" class=""anchor"" href=""#specification-3""></a>Specification</h1>
+<h3>
+<a name=""overview-4"" class=""anchor"" href=""#overview-4""></a>Overview</h3>
+<p>The IMC will be responsible for updating and maintaining the methodologies for the following products:</p>
+<ul>
+<li>icETH</li>
+<li>dsETH</li>
+<li>MVI</li>
+</ul>
+<p>Any future Index Coop products that launch without a third-party methodologist will also come under the purview of the IMC. In the event that Index Coop agrees to join in partnership with a third-party who will assume the Methodologist role for any or all of these products, these responsibilities can be revoked by IIP.</p>
+<h3>
+<a name=""structure-5"" class=""anchor"" href=""#structure-5""></a>Structure</h3>
+<p>The IMC will consist of three members with expertise in on-chain indices, namely:</p>
+<ul>
+<li><a class=""mention"" href=""/u/afromac"">@afromac</a></li>
+<li><a class=""mention"" href=""/u/mrmadila"">@mrmadila</a></li>
+<li><a class=""mention"" href=""/u/sidhemraj"">@sidhemraj</a></li>
+</ul>
+<p>IMC members will serve until they are removed by an IIP or voluntarily step down. Additional members can be added or removed by IIP. IMC members will not be additionally compensated as they will be core contributors to the Index Coop DAO.</p>
+<h3>
+<a name=""responsibilities-6"" class=""anchor"" href=""#responsibilities-6""></a>Responsibilities</h3>
+<p>The IMC will be responsible for ensuring that product methodologies are fair and objective and that they represent the best possible version of the strategy that Index Coop can execute with the current resources and information available. This will be achieved by defining clear and quantifiable rules and criteria and removing any ambiguous language that might exist in the methodologies today.</p>
+<p><strong>Updating Methodologies</strong></p>
+<p>Over time, product methodologies should be updated when new technology and information becomes available. Any changes to a product methodology should be clearly communicated to the wider community, along with the rationale for the changes. A product methodology should only be updated infrequently to ensure consistency for token holders.</p>
+<p>The IMC will regularly review existing methodologies to determine if any changes or updates are necessary. This formal review will occur bi-annually, and informal discussions will continue throughout the year to keep the methodologies up to date. If a change is proposed, one of the IMC members must publish the proposed change on the forums. The committee, consisting of three members, will use optimistic governance, which means that any communication from a committee member will be considered to have been unanimously agreed upon unless objected to on the forum by the two other members. In the event of a dispute, changes can be resolved via an IIP</p>
+<p><strong>Executing Rebalances</strong></p>
+<p>The IMC will also ensure the highest standards in data collection, methodology execution, and communication around product rebalancing and reweighting. Data should be collected from multiple trusted data providers to ensure accuracy. The raw data should also be made available in the Pre-Rebalance Report to protect against data manipulation, errors, and corruption.</p>
+<p>All intended rebalance trades should be communicated in advance to token holders, and all trades to execute the rebalance should prioritize capital preservation as the primary goal.</p>
+<p>Specific milestones and documentation to be published during the rebalance period includes:</p>
+<ul>
+<li>Data Collection: To occur 10 days before a rebalance</li>
+<li>Pre-Rebalance Report: To be posted 1 week before a rebalance</li>
+<li>Rebalance Date: To begin on the first working day of the month in line with the specific schedule of the product methodology</li>
+<li>Post-Rebalance Report Date: To be posted within 3 working days of the completion of the rebalance</li>
+</ul>
+<p><strong>Criteria for Membership</strong></p>
+<p>All candidates for inclusion in the IMC now or in the future should have previous experience in designing and operating on-chain financial products. It is highly recommended that they are recruited from the product team directly, as is the case for this initially proposed cohort.</p>
+<p>Specific competencies include:</p>
+<ul>
+<li>Risk management</li>
+<li>On-chain liquidity evaluation</li>
+<li>Financial data analysis</li>
+</ul>
+<p>Non-compliant members can be asked to stand down by the Operations Pod, and be replaced by IIP.</p>
+<h1>
+<a name=""summary-7"" class=""anchor"" href=""#summary-7""></a>Summary</h1>
+<p>This IIP proposes the formation of an Index Coop Methodology Committee (IMC) to assume responsibility for overseeing and maintaining the methodologies that support the current and any future Index Coop products. The IMC will be responsible for defining clear and quantifiable rules and criteria, updating and improving product methodologies over time, collecting data from multiple trusted data sources, and communicating any changes to token holders. The IMC will consist of three members with expertise in on-chain indices and will serve until removed by an IIP or voluntarily step down. The Committee will utilize optimistic governance and any changes can be resolved via an IIP in the event of a dispute.</p>
+<h1>
+<a name=""voting-8"" class=""anchor"" href=""#voting-8""></a>Voting</h1>
+<p><strong>For:</strong> Do create the Internal Methodologist Committee</p>
+<p><strong>Against:</strong> Do not create the Internal Methodologist Committee</p>",Index,afromac,

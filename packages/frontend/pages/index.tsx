@@ -14,8 +14,6 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
 
-  console.log("records", records);
-
   // Calculate the total number of pages
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
 

@@ -6,14 +6,14 @@ import * as path from "path";
 const prisma = new PrismaClient();
 
 type CsvRecord = {
-  id: number;
+  origin: string;
   title: string;
-  protocol: string;
   link: string;
+  date: string;
+  content: string;
+  organization: string;
+  author: string;
   category: string;
-  // ToDo. This will be multiple
-  subcategories: string;
-  // ToDo. Missing fields (date, etc)
 };
 
 const generateSlug = (title: string): string => {
@@ -32,17 +32,15 @@ async function main() {
     .on("data", data => records.push(data))
     .on("end", async () => {
       console.log("records.csv parsed, seeding database with", records.length, "records");
-      // Dedupe and create categories and subcategories first (and remove empty subcategories)
+      // Dedupe and create categories first
       const categories = [
-        ...new Set(records.filter(record => record.category.trim() !== "").map(record => record.category)),
-      ];
-      const subcategories = [
-        ...new Set(records.filter(record => record.subcategories.trim() !== "").map(record => record.subcategories)),
+        ...new Set(
+          records.filter(record => record.category && record.category.trim() !== "").map(record => record.category),
+        ),
       ];
 
       // Saving mapping on memory to save some queries
       const categoryMap: { [key: string]: number } = {};
-      const subcategoryMap: { [key: string]: number } = {};
 
       console.log("Creating categories");
       for (const categoryName of categories) {
@@ -55,23 +53,11 @@ async function main() {
         categoryMap[category.name] = category.id;
       }
 
-      console.log("Creating subcategories");
-      for (const subcategoryName of subcategories) {
-        const subcategory = await prisma.subCategory.upsert({
-          where: { name: subcategoryName },
-          update: {},
-          create: { name: subcategoryName },
-        });
-
-        subcategoryMap[subcategory.name] = subcategory.id;
-      }
-
       // Then create records
       console.log("Creating Records");
       for (const record of records) {
         console.log("Creating Record", record.title);
 
-        // Generate slug and ensure it's unique
         let slugAuto = generateSlug(record.title);
         let count = 1;
         while (await prisma.record.findFirst({ where: { slug: slugAuto } })) {
@@ -80,39 +66,31 @@ async function main() {
         }
 
         let recordData = {
-          id: Number(record.id),
           title: record.title,
           slug: slugAuto,
+          // TODO: parse date
           date: new Date(),
-          organization: record.protocol,
+          organization: record.organization,
           link: record.link,
-          summary: "",
+          content: record.content,
+          author: record.author,
         } as {
-          id: number;
           title: string;
           slug: string;
           date: Date;
           organization: string;
           link: string;
           categoryId?: number;
-          summary: string;
-          subcategories?: { create: { subCategoryId: number }[] };
+          content: string;
+          author: string;
         };
 
         if (categoryMap[record.category]) {
           recordData.categoryId = categoryMap[record.category];
         }
 
-        if (subcategoryMap[record.subcategories]) {
-          recordData.subcategories = {
-            create: [{ subCategoryId: subcategoryMap[record.subcategories] }],
-          };
-        }
-
-        await prisma.record.upsert({
-          where: { id: Number(record.id) },
-          update: {},
-          create: recordData,
+        await prisma.record.create({
+          data: recordData,
         });
       }
 

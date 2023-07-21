@@ -12,6 +12,7 @@
     "backend": "yarn workspace @catalog/backend dev",
     "frontend": "yarn workspace @catalog/frontend dev",
     "db:push": "yarn workspace @catalog/backend db:push",
+    "db:reset": "yarn workspace @catalog/backend db:reset",
     "db:seed": "yarn workspace @catalog/backend db:seed",
     "prisma:generate": "yarn workspace @catalog/backend prisma:generate",
     "prisma:studio": "yarn workspace @catalog/backend prisma:studio"

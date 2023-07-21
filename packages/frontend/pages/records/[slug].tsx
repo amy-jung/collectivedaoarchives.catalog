@@ -6,16 +6,11 @@ interface RecordProps {
 }
 
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
-  console.log("record", record);
-  // Get an array of subcategory names
-  // @ts-ignore
-  const subCategoryNames = record.subcategories?.map(subCategoryOnRecord => subCategoryOnRecord.subCategory.name);
-
   return (
     <div className="mx-auto max-w-xl">
       <h1 className="font-bold text-3xl mb">{record.title}</h1>
       <span className="mb-8 block">posted on {record.date}</span>
-      <p className="mb-2">{record.summary}</p>
+      <div className="mb-2" dangerouslySetInnerHTML={{ __html: record.content }}></div>
       <ul className="mb-8">
         <li>
           <span className="font-bold">Protocol:</span> {record.organization}
@@ -28,9 +23,6 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
         </li>
         <li>
           <span className="font-bold">Category:</span> {record.category?.name}
-        </li>
-        <li>
-          <span className="font-bold">Subcategories:</span> {subCategoryNames?.join(", ")}
         </li>
       </ul>
     </div>
