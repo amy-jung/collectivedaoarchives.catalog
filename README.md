@@ -71,6 +71,7 @@ yarn prisma:generate
 ```
 
 You will need to run those commands again when you change the database schema.
+You can also use `yarn db:reset` to drop the database.
 
 **6. Start the backend**
 ```bash
