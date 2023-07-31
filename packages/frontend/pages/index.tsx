@@ -8,16 +8,14 @@ interface RecordsProps {
   totalCount: number;
 }
 
-const PAGE_SIZE = 10;
-
 const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
   return (
-    <div className="">
+    <>
       <div className="bg-secondary pb-32 pt-24">
-        <div className="container mx-auto max-w-4xl">
-          <h1 className="font-bold text-5xl mb-2">DAO COLLECTIVE CATALOG</h1>
-          <p className="italic text-xl">An open source index of DAO historical events.</p>
-          <div className="flex w-full mt-12">
+        <div className="container mx-auto w-[896px] max-w-[90%]">
+          <h1 className="font-bold text-xl sm:text-5xl mb-2">DAO COLLECTIVE CATALOG</h1>
+          <p className="italic text-lg sm:text-xl">An open source index of DAO historical events.</p>
+          <div className="flex flex-col sm:flex-row w-full mt-12">
             <input
               type="text"
               className="grow p-2 px-6 border-2 border-primary"
@@ -27,21 +25,23 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-8 w-[600px]">
-        {records?.map(record => (
-          <div key={record.id}>
-            <h2 className="text-xl mb-2">
-              <Link href={`/records/${record.slug}`}>
-                <span className="font-bold link">{record.title}</span>
-              </Link>
-            </h2>
-            <p>
-              <span className="italic">{record.organization}</span>
-            </p>
-          </div>
-        ))}
+      <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
+        <div className="grid md:grid-cols-3 gap-8">
+          {records?.slice(0, 6).map(record => (
+            <div key={record.id} className="border-t-base-200 border-t-[10px] py-6">
+              <h2 className="text-xl mb-2">
+                <Link href={`/records/${record.slug}`}>
+                  <span className="font-bold">{record.title}</span>
+                </Link>
+              </h2>
+              <p>
+                <span className="italic">{record.organization}</span>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
