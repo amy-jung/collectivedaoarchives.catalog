@@ -7,24 +7,35 @@ interface RecordProps {
 
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
   return (
-    <div className="mx-auto max-w-xl">
-      <h1 className="font-bold text-3xl mb">{record.title}</h1>
-      <span className="mb-8 block">posted on {record.date}</span>
-      <div className="mb-2" dangerouslySetInnerHTML={{ __html: record.content }}></div>
-      <ul className="mb-8">
-        <li>
-          <span className="font-bold">Protocol:</span> {record.organization}
-        </li>
-        <li>
-          <span className="font-bold">Link:</span>{" "}
-          <a href={record.link} target="_blank" className="link">
-            Source
-          </a>
-        </li>
-        <li>
-          <span className="font-bold">Category:</span> {record.category?.name}
-        </li>
-      </ul>
+    <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
+      <div className="border-b-200 border-b-[10px] mb-10">
+        <h1 className="font-bold text-4xl mb-4">{record.title}</h1>
+        <span className="mb-8 block">{record.organization}</span>
+      </div>
+
+      <div className="flex flex-col md:flex-row">
+        <div className="mb-2 md:w-3/4 pr-24" dangerouslySetInnerHTML={{ __html: record.content }}></div>
+        <div className="md:w-1/4 flex flex-col gap-12">
+          <div>
+            <span className="font-bold">Protocol:</span>
+            <span className="block">{record.organization}</span>
+          </div>
+          <div>
+            <span className="font-bold">Source:</span>
+            <a className="block link" href={record.link} target="_blank">
+              {record.link}
+            </a>
+          </div>
+          <div>
+            <span className="font-bold">Date:</span>
+            <span className="block">{record.date}</span>
+          </div>
+          <div>
+            <span className="font-bold">Category:</span>
+            <span className="block">{record.category?.name ?? "N/A"}</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
