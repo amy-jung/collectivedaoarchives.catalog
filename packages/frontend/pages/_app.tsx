@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 import { WagmiConfig } from "wagmi";
+import { Footer } from "~~/components/Footer";
 import { Header } from "~~/components/Header";
 import { chains, wagmiConfig } from "~~/services/web3/wagmiConnectors";
 import "~~/styles/globals.css";
@@ -18,6 +19,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <main className="relative flex flex-col flex-1">
             <Component {...pageProps} />
           </main>
+          <Footer />
         </div>
       </RainbowKitProvider>
     </WagmiConfig>
