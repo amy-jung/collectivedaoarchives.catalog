@@ -13,7 +13,7 @@ export const Header = () => {
     <div className="flex justify-between items-center p-4 bg-secondary">
       {/* hide this span if we are in the NextJS main page */}
       <span className="font-bold sm:text-xl">
-        <Link href="/" className={isMainPage ? "hidden" : ""}>
+        <Link href="/" className={isMainPage ? "hidden" : "hidden sm:inline"}>
           DAO COLLECTIVE CATALOG
         </Link>
       </span>
