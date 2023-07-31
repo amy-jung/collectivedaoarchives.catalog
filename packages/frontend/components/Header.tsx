@@ -11,7 +11,6 @@ export const Header = () => {
 
   return (
     <div className="flex justify-between items-center p-4 bg-secondary">
-      {/* hide this span if we are in the NextJS main page */}
       <span className="font-bold sm:text-xl">
         <Link href="/" className={isMainPage ? "hidden" : "hidden sm:inline"}>
           DAO COLLECTIVE CATALOG
@@ -26,7 +25,9 @@ export const Header = () => {
             <Link href="/contribute">Contribute</Link>
           </li>
         </ul>
-        <ConnectButton chainStatus="icon" />
+        <div className="rainbow-kit-connect">
+          <ConnectButton chainStatus="icon" />
+        </div>
       </div>
     </div>
   );
