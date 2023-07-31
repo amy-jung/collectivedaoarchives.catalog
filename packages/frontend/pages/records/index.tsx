@@ -10,7 +10,7 @@ interface RecordsProps {
 
 const PAGE_SIZE = 10;
 
-const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
+const RecordsIndex: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
 
@@ -100,4 +100,4 @@ export const getServerSideProps: GetServerSideProps = async context => {
   };
 };
 
-export default Home;
+export default RecordsIndex;
