@@ -7,7 +7,7 @@ a:hover {
     transition: 0.3s opacity;
 }
 
-[data-rk] .rainbow-kit-connect button {
+[data-rk] .rainbow-kit-connect [data-testid="rk-connect-button"] {
     background: hsl(var(--p));
     border-radius: 5px;
 }
