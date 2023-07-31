@@ -22,7 +22,7 @@ const RecordsIndex: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const endIndex = startIndex + PAGE_SIZE;
 
   const goToPage = (page: number) => {
-    router.push(`/?page=${page}`);
+    router.push(`/records?page=${page}`);
   };
 
   return (
