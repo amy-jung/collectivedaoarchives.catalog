@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a:hover {
+    opacity: 0.7;
+    transition: 0.3s opacity;
+}
