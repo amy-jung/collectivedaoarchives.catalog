@@ -27,24 +27,21 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
 
   return (
     <div className="flex flex-col items-center p-8 md:px-24">
-      <h1 className="text-4xl font-bold text-center">Collective DAO Archive Catalog</h1>
-      <p className="text-center">An open source index of DAO historical events.</p>
-      <h2 className="font-bold text-3xl mt-12 mb-6">
-        Catalog <span>({totalCount})</span>
-      </h2>
-      <div className="flex flex-col gap-8 w-[600px]">
-        {records?.map(record => (
-          <div key={record.id}>
-            <h2 className="text-xl mb-2">
-              <Link href={`/records/${record.slug}`}>
-                <span className="font-bold link">{record.title}</span>
-              </Link>
-            </h2>
-            <p>
-              <span className="italic">{record.organization}</span>
-            </p>
-          </div>
-        ))}
+      <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
+        <div className="grid md:grid-cols-3 gap-8">
+          {records?.map(record => (
+            <div key={record.id} className="border-t-base-200 border-t-[10px] py-6">
+              <h2 className="text-xl mb-2">
+                <Link href={`/records/${record.slug}`}>
+                  <span className="font-bold">{record.title}</span>
+                </Link>
+              </h2>
+              <p>
+                <span className="italic">{record.organization}</span>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex justify-between items-center mt-8 gap-4">
         <button
