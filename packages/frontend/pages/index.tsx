@@ -11,27 +11,22 @@ interface RecordsProps {
 const PAGE_SIZE = 10;
 
 const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
-  const router = useRouter();
-  const currentPage = Number(router.query.page) || 1;
-
-  // Calculate the total number of pages
-  const totalPages = Math.ceil(totalCount / PAGE_SIZE);
-
-  // Calculate the start and end indexes of the current page
-  const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const endIndex = startIndex + PAGE_SIZE;
-
-  const goToPage = (page: number) => {
-    router.push(`/?page=${page}`);
-  };
-
   return (
-    <div className="flex flex-col items-center p-8 md:px-24">
-      <h1 className="text-4xl font-bold text-center">Collective DAO Archive Catalog</h1>
-      <p className="text-center">An open source index of DAO historical events.</p>
-      <h2 className="font-bold text-3xl mt-12 mb-6">
-        Catalog <span>({totalCount})</span>
-      </h2>
+    <div className="">
+      <div className="bg-secondary pb-32 pt-24">
+        <div className="container mx-auto max-w-4xl">
+          <h1 className="font-bold text-5xl mb-2">DAO COLLECTIVE CATALOG</h1>
+          <p className="italic text-xl">An open source index of DAO historical events.</p>
+          <div className="flex w-full mt-12">
+            <input
+              type="text"
+              className="grow p-2 px-6 border-2 border-primary"
+              placeholder={`(WIP :D) Search all ${totalCount} Records...`}
+            />
+            <button className="btn btn-primary rounded-none">SEARCH</button>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-col gap-8 w-[600px]">
         {records?.map(record => (
           <div key={record.id}>
@@ -45,35 +40,6 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
             </p>
           </div>
         ))}
-      </div>
-      <div className="flex justify-between items-center mt-8 gap-4">
-        <button
-          className={`btn btn-primary ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
-          onClick={() => {
-            if (currentPage > 1) {
-              goToPage(currentPage - 1);
-            }
-          }}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-
-        <p className="text-gray-700 flex flex-col gap-2">
-          Page {currentPage} of {totalPages}
-        </p>
-
-        <button
-          className={`btn btn-primary ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
-          onClick={() => {
-            if (currentPage < totalPages) {
-              goToPage(currentPage + 1);
-            }
-          }}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
       </div>
     </div>
   );
