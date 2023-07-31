@@ -6,3 +6,8 @@ a:hover {
     opacity: 0.7;
     transition: 0.3s opacity;
 }
+
+[data-rk] .rainbow-kit-connect button {
+    background: hsl(var(--p));
+    border-radius: 5px;
+}
