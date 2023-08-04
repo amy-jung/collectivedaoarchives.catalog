@@ -20,7 +20,6 @@ module.exports = {
           "base-content": "#000000",
         },
       },
-      "dark",
     ],
   },
   theme: {},
