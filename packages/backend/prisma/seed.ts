@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import csv from "csv-parser";
 import * as fs from "fs";
 import * as path from "path";
+import sanitizeHtml from 'sanitize-html';
 
 const prisma = new PrismaClient();
 
@@ -78,7 +79,7 @@ async function main() {
           date: record.date ? new Date(record.date) : null,
           organization: record.organization,
           link: record.link,
-          content: record.content,
+          content: sanitizeHtml(record.content),
           author: record.author,
         } as {
           title: string;
