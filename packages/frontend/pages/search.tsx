@@ -65,6 +65,9 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
               <p>
                 <span className="italic">{record.organization}</span>
               </p>
+              <p className="mt-4">
+                <span className="italic" dangerouslySetInnerHTML={{ __html: record.headline }}></span>
+              </p>
             </div>
           ))}
         </div>

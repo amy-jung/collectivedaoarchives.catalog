@@ -16,7 +16,7 @@ router.get("/", async (req: Request, res: Response) => {
     const offset = (currentPage - 1) * PAGE_SIZE;
 
     records = await prisma.$queryRaw`
-      SELECT id, title, content, organization, link, date, slug, "createdAt", "updatedAt", date, "categoryId", author FROM "Record"
+      SELECT ts_headline('english', CONCAT(title, content, organization, author), websearch_to_tsquery('english', ${q}), 'MaxFragments=2') as headline, id, title, content, organization, link, date, slug, "createdAt", "updatedAt", date, "categoryId", author FROM "Record"
       WHERE
         "textSearch" @@ websearch_to_tsquery('english', ${q})
       ORDER BY ts_rank("textSearch", websearch_to_tsquery('english', ${q})) DESC
