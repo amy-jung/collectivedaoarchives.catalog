@@ -14,6 +14,8 @@
     "db:push": "yarn workspace @catalog/backend db:push",
     "db:reset": "yarn workspace @catalog/backend db:reset",
     "db:seed": "yarn workspace @catalog/backend db:seed",
+    "migrate:dev": "yarn workspace @catalog/backend migrate:dev",
+    "migrate:deploy": "yarn workspace @catalog/backend migrate:deploy",
     "prisma:generate": "yarn workspace @catalog/backend prisma:generate",
     "prisma:studio": "yarn workspace @catalog/backend prisma:studio"
   },

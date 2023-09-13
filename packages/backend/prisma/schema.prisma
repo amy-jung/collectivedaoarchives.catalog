@@ -1,33 +1,30 @@
-datasource db {
-  provider          = "postgresql"
-  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
-}
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
 }
 
-// ToDo. Final fields (enabled/approved) and relations (tags?)
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
 model Record {
-  id           Int       @id @default(autoincrement())
+  id           Int                      @id @default(autoincrement())
   title        String
   content      String
   organization String
-  // ToDo. Should be unique?
   link         String
   date         DateTime?
-  slug         String    @unique
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  category     Category? @relation(fields: [categoryId], references: [id])
+  slug         String                   @unique
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
   categoryId   Int?
   author       String
-  textSearch       Unsupported("TSVECTOR")?
+  textSearch   Unsupported("tsvector")? @default(dbgenerated("((((((to_tsvector('english'::regconfig, title) || ''::tsvector) || to_tsvector('english'::regconfig, content)) || ''::tsvector) || to_tsvector('simple'::regconfig, organization)) || ''::tsvector) || to_tsvector('simple'::regconfig, author))"))
+  category     Category?                @relation(fields: [categoryId], references: [id])
 
-  @@index([textSearch])
+  @@index([textSearch], map: "Record_search_idx", type: Gin)
 }
 
 model Category {
