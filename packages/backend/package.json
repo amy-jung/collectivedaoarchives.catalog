@@ -13,6 +13,7 @@
     "db:reset": "prisma migrate reset --skip-seed",
     "db:seed": "prisma db seed",
     "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:validate": "prisma validate",
