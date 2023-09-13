@@ -1,4 +1,5 @@
 import recordRoutes from "./records";
+import searchRoutes from "./search";
 import { Router } from "express";
 
 const router = Router();
@@ -9,5 +10,6 @@ router.get("/", async (req, res) => {
 });
 
 router.use("/records", recordRoutes);
+router.use("/search", searchRoutes);
 
 export default router;

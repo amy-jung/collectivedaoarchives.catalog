@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { GetServerSideProps, NextPage } from "next";
@@ -9,6 +10,13 @@ interface RecordsProps {
 }
 
 const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
+  const [q, setQ] = useState<string>("");
+  const { push } = useRouter();
+
+  const onSearch = () => {
+    push(`/search?q=${q}`);
+  };
+
   return (
     <>
       <div className="bg-secondary pb-32 pt-24">
@@ -18,10 +26,20 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           <div className="flex flex-col sm:flex-row w-full mt-12">
             <input
               type="text"
+              value={q}
+              onChange={value => setQ(value.target.value)}
+              onKeyDown={event => {
+                if (event.key === "Enter") {
+                  onSearch();
+                }
+              }}
               className="grow p-2 px-6 border-2 border-primary"
-              placeholder={`(WIP :D) Search all ${totalCount} Records...`}
+              placeholder={`Search all ${totalCount} Records...`}
             />
-            <button className="btn btn-primary rounded-none">SEARCH</button>
+            <button
+              className="btn btn-primary rounded-none"
+              onClick={onSearch}
+            >SEARCH</button>
           </div>
         </div>
       </div>

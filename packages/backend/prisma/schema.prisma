@@ -7,6 +7,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 // ToDo. Final fields (enabled/approved) and relations (tags?)
@@ -24,6 +25,9 @@ model Record {
   category     Category? @relation(fields: [categoryId], references: [id])
   categoryId   Int?
   author       String
+  textSearch       Unsupported("TSVECTOR")?
+
+  @@index([textSearch])
 }
 
 model Category {
