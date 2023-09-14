@@ -61,17 +61,24 @@ Defaults should work for local development.
 
 **5. Create and seed the database**
 
+Copy the `packages/backend/prisma/records.csv.sample` to `packages/backend/prisma/records.csv` or use the sample file as a template to create your own.
+
 ```bash
-# Create the database (based on packages/backend/prisma/schema.prisma)
-yarn db:push
+# Create the database schema (based on the migrations, generated from packages/backend/prisma/schema.prisma)
+yarn migrate:dev
 # Seed the database (packages/backend/prisma/seed.ts)
 yarn db:seed
-# Create the prisma Types
-yarn prisma:generate
 ```
 
-You will need to run those commands again when you change the database schema.
-You can also use `yarn db:reset` to drop the database.
+If you want to update the schema:
+1. Tweak the `packages/backend/prisma/schema.prisma`
+2. Run `yarn db:push`
+3. Repeat 1 & 2 until the schema is ready, and then run `yarn migrate:dev --name <your_update_name>` to create the corresponding migration file.
+
+You can also use `yarn db:reset` to regenerate the schema (you'll lose all the data in the database!).
+
+Note: For PROD enviroments, use `yarn migrate:deploy` (instead of `yarn migrate:dev`) to apply the migrations to the database.
+Eventually we could add the command in the `heroku-postbuild` script in `packages/backend/package.json` to run it automatically on Heroku, but for now we'll run it manually.
 
 **6. Start the backend**
 ```bash
