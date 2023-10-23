@@ -11,3 +11,66 @@ a:hover {
     background: hsl(var(--p));
     border-radius: 5px;
 }
+
+.record-view-mode-full h1,
+.record-view-mode-full h2,
+.record-view-mode-full h3,
+.record-view-mode-full h4,
+.record-view-mode-full h5 {
+    font-weight: bold;
+}
+
+.record-view-mode-full h1 {
+    font-size: 1.75rem;
+    margin-top: 1.5rem;
+}
+
+.record-view-mode-full h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.record-view-mode-full p {
+    margin-bottom: 10px;
+}
+
+.record-view-mode-full hr {
+    margin: 0.5rem 0;
+}
+
+.record-view-mode-full ul {
+    list-style: circle inside;
+    margin: 0.5rem 0;
+}
+.record-view-mode-full ol {
+    list-style: decimal inside;
+}
+
+.record-view-mode-full ul p {
+    display: inline-block;
+}
+.record-view-mode-full ol p {
+    display: inline-block;
+}
+
+.record-view-mode-full pre {
+    overflow-x: auto;
+}
+
+.record-view-mode-full table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin: 1rem 0;
+}
+
+.record-view-mode-full th, .record-view-mode-full td {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.record-view-mode-full th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
