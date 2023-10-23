@@ -33,7 +33,6 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
 
   return (
     <div className="flex flex-col items-center p-8 md:px-24">
-
       <div className="flex flex-col sm:flex-row w-full mt-12">
         <input
           type="text"
@@ -47,10 +46,9 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
           className="grow p-2 px-6 border-2 border-primary"
           placeholder={`Search...`}
         />
-        <button
-          className="btn btn-primary rounded-none"
-          onClick={onSearch}
-        >SEARCH</button>
+        <button className="btn btn-primary rounded-none" onClick={onSearch}>
+          SEARCH
+        </button>
       </div>
 
       <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
@@ -66,7 +64,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
                 <span className="italic">{record.organization}</span>
               </p>
               <p className="mt-4">
-                <span className="italic" dangerouslySetInnerHTML={{ __html: record.headline }}></span>
+                <span className="italic break-words" dangerouslySetInnerHTML={{ __html: record.headline }}></span>
               </p>
             </div>
           ))}
