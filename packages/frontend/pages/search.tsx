@@ -9,7 +9,7 @@ interface RecordsProps {
   totalCount: number;
 }
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const endIndex = startIndex + PAGE_SIZE;
 
   const goToPage = (page: number) => {
-    router.push(`/records?page=${page}`);
+    router.push(`/search?q=${q}&page=${page}`);
   };
 
   return (
