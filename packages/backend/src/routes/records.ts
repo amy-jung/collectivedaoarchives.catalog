@@ -4,7 +4,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 const prisma = new PrismaClient();
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 9;
 
 router.get("/", async (req: Request, res: Response) => {
   const currentPage = Number(req.query.page) || 1;
