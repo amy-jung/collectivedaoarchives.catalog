@@ -29,5 +29,14 @@ module.exports = {
       },
     ],
   },
-  theme: {},
+  theme: {
+    extend: {
+      fontSize: {
+        "6xl": "4rem",
+      },
+      fontFamily: {
+        heading: ["CooperHewitt", "sans-serif"],
+      },
+    },
+  },
 };

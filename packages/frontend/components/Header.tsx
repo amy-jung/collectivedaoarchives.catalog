@@ -17,7 +17,10 @@ export const Header = () => {
         </Link>
       </span>
       <div className="flex gap-6 sm:gap-12 items-center">
-        <ul className="flex gap-6 sm:gap-12 sm:text-xl font-bold">
+        <ul className="flex gap-6 sm:gap-12 sm:text-2xl font-bold uppercase">
+          <li>
+            <Link href="/search">Search</Link>
+          </li>
           <li>
             <Link href="/records">Records</Link>
           </li>
@@ -26,7 +29,7 @@ export const Header = () => {
           </li>
         </ul>
         <div className="rainbow-kit-connect">
-          <ConnectButton chainStatus="icon" />
+          <ConnectButton chainStatus="icon" label="Sign in" />
         </div>
       </div>
     </div>

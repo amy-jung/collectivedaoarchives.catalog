@@ -2,12 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "CooperHewitt";
+  src: url("/fonts/CooperHewitt-Medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CooperHewitt";
+  src: url("/fonts/CooperHewitt-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading;
+  letter-spacing: 0.7px;
+}
+
+.font-heading {
+  letter-spacing: 0.7px;
+}
+
 a:hover {
-    opacity: 0.7;
-    transition: 0.3s opacity;
+  opacity: 0.7;
+  transition: 0.3s opacity;
 }
 
 [data-rk] .rainbow-kit-connect [data-testid="rk-connect-button"] {
-    background: hsl(var(--p));
-    border-radius: 5px;
+  background: hsl(var(--p));
+  border-radius: 5px;
 }
