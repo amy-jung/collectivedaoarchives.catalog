@@ -18,6 +18,10 @@ module.exports = {
           "base-200": "#D9D9D9",
           "base-300": "#e7e2df",
           "base-content": "#000000",
+
+          ".link": {
+            textUnderlineOffset: "3px",
+          },
         },
       },
     ],
