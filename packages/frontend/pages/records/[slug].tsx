@@ -15,7 +15,7 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
 
       <div className="flex flex-col md:flex-row">
         <div
-          className="mb-2 md:w-3/4 md:pr-24 break-words record-view-mode-full"
+          className="mb-2 md:w-3/4 md:pr-24 break-words record-view-mode-full prose"
           dangerouslySetInnerHTML={{ __html: record.content }}
         ></div>
         <div className="border-t-base-200 border-t-[10px] pt-6 mt-6 md:pt-0 md:mt-0 md:border-0 md:w-1/4 flex flex-col gap-12">
