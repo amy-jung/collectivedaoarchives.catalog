@@ -18,7 +18,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
   };
 
   return (
-    <>
+    <div className="pb-20 md:pb-44">
       <div className="bg-secondary pb-32 pt-24">
         <div className="container mx-auto w-[896px] max-w-[90%]">
           <h1 className="font-bold text-xl sm:text-5xl mb-2">DAO COLLECTIVE CATALOG</h1>
@@ -36,10 +36,9 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
               className="grow p-2 px-6 border-2 border-primary"
               placeholder={`Search all ${totalCount} Records...`}
             />
-            <button
-              className="btn btn-primary rounded-none"
-              onClick={onSearch}
-            >SEARCH</button>
+            <button className="btn btn-primary rounded-none" onClick={onSearch}>
+              SEARCH
+            </button>
           </div>
         </div>
       </div>
@@ -59,7 +58,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
