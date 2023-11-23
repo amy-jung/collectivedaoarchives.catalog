@@ -32,7 +32,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-8 md:px-24">
+    <div className="flex flex-col items-center p-8 md:px-24 pb-20 md:pb-44">
       <div className="flex flex-col sm:flex-row w-full mt-12">
         <input
           type="text"

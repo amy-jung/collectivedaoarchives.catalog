@@ -26,7 +26,7 @@ const RecordsIndex: NextPage<RecordsProps> = ({ records, totalCount }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-8 md:px-24">
+    <div className="flex flex-col items-center p-8 md:px-24 pb-20 md:pb-44">
       <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
         <div className="grid md:grid-cols-3 gap-8">
           {records?.map(record => (
