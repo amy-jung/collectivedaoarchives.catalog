@@ -10,7 +10,7 @@ export const Header = () => {
   const isMainPage = pathname === "/";
 
   return (
-    <div className="flex justify-between items-center p-4 bg-secondary">
+    <div className="flex justify-between items-center p-4 bg-accent">
       <span className="font-bold sm:text-xl">
         <Link href="/" className={isMainPage ? "hidden" : "hidden sm:inline"}>
           DAO COLLECTIVE CATALOG

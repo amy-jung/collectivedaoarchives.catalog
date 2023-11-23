@@ -8,7 +8,7 @@ const About: NextPage = () => {
       <div className="container mx-auto w-[1080px] max-w-[90%] mt-16 md:mt-44">
         <h1 className="font-bold text-xl md:text-6xl mb-10">THE COLLECTIVE DAO CATALOG</h1>
         <div className="text-lg md:text-2xl italic">
-          <p className="bg-secondary text-primary px-1 inline">
+          <p className="bg-accent text-primary px-1 inline">
             The Collective DAO Catalog is an open source database of off-chain, DAO historical events.
           </p>
 
@@ -67,7 +67,7 @@ const About: NextPage = () => {
             If you'd like to contribute or build on top of the Collective DAO Catalog, please get in touch on{" "}
             <Link
               href="https://github.com/amy-jung/collectivedaoarchives.catalog"
-              className="bg-secondary text-primary link p-1 pt-0"
+              className="bg-accent text-primary link p-1 pt-0"
               target="_blank"
             >
               GitHub

@@ -10,14 +10,17 @@ module.exports = {
     themes: [
       {
         collectiveDao: {
-          primary: "#283451",
-          secondary: "#D4ED5B",
-          accent: "#eeaf3a",
-          neutral: "#291334",
+          primary: "#36456C",
+          secondary: "#2D3248",
+          accent: "#D4ED5B",
+          neutral: "#C9D2DB",
           "base-100": "#faf7f5",
           "base-200": "#D9D9D9",
           "base-300": "#e7e2df",
           "base-content": "#000000",
+          success: "#6EDA60",
+          warning: "#F9D551",
+          error: "#ED7267",
 
           ".link": {
             textUnderlineOffset: "3px",
