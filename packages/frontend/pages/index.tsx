@@ -19,10 +19,10 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
 
   return (
     <div className="pb-20 md:pb-44">
-      <div className="bg-secondary pb-32 pt-24">
+      <div className="bg-accent pb-32 pt-24 w-full">
         <div className="container mx-auto w-[896px] max-w-[90%]">
-          <h1 className="font-bold text-xl sm:text-5xl mb-2">DAO COLLECTIVE CATALOG</h1>
-          <p className="italic text-lg sm:text-xl">An open source index of DAO historical events.</p>
+          <h1 className="font-bold text-xl sm:text-6xl sm:leading-none">COLLECTIVE DAO CATALOG</h1>
+          <p className="italic text-lg sm:text-2xl">An open source index of DAO historical events.</p>
           <div className="flex flex-col sm:flex-row w-full mt-12">
             <input
               type="text"
@@ -42,17 +42,22 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
+      <div className="container mx-auto w-[1350px] max-w-[90%] mt-14">
+        <div className="mb-12">
+          <Link href="/records" className="font-bold text-4xl link-hover">
+            See All records {">"}
+          </Link>
+        </div>
         <div className="grid md:grid-cols-3 gap-8">
           {records?.slice(0, 6).map(record => (
             <div key={record.id} className="border-t-base-200 border-t-[10px] py-6">
-              <h2 className="text-xl mb-2">
+              <p className="text-2xl md:text-4xl mb-2">
                 <Link href={`/records/${record.slug}`}>
                   <span className="font-bold">{record.title}</span>
                 </Link>
-              </h2>
+              </p>
               <p>
-                <span className="italic">{record.organization}</span>
+                <span className="text-lg md:text-2xl">{record.organization}</span>
               </p>
             </div>
           ))}

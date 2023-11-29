@@ -9,13 +9,13 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
   return (
     <div className="container mx-auto w-[1150px] max-w-[90%] mt-14 pb-20 md:pb-44">
       <div className="border-b-200 border-b-[10px] mb-10">
-        <h1 className="font-bold text-4xl mb-4">{record.title}</h1>
-        <span className="mb-8 block">{record.organization}</span>
+        <h1 className="font-bold text-2xl md:text-6xl mb-4 leading-none">{record.title}</h1>
+        <span className="mb-8 block text-lg md:text-2xl">{record.organization}</span>
       </div>
 
       <div className="flex flex-col md:flex-row">
         <div
-          className="mb-2 md:w-3/4 md:pr-24 break-words record-view-mode-full"
+          className="mb-2 md:w-3/4 md:pr-24 break-words record-view-mode-full prose"
           dangerouslySetInnerHTML={{ __html: record.content }}
         ></div>
         <div className="border-t-base-200 border-t-[10px] pt-6 mt-6 md:pt-0 md:mt-0 md:border-0 md:w-1/4 flex flex-col gap-12">

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,21 +10,29 @@ module.exports = {
     themes: [
       {
         collectiveDao: {
-          primary: "#283451",
-          secondary: "#D4ED5B",
-          accent: "#eeaf3a",
-          neutral: "#291334",
+          primary: "#36456C",
+          secondary: "#2D3248",
+          accent: "#D4ED5B",
+          neutral: "#C9D2DB",
           "base-100": "#faf7f5",
           "base-200": "#D9D9D9",
           "base-300": "#e7e2df",
           "base-content": "#000000",
-
-          ".link": {
-            textUnderlineOffset: "3px",
-          },
+          success: "#6EDA60",
+          warning: "#F9D551",
+          error: "#ED7267",
         },
       },
     ],
   },
-  theme: {},
+  theme: {
+    extend: {
+      fontSize: {
+        "6xl": "4rem",
+      },
+      fontFamily: {
+        heading: ["CooperHewitt", "sans-serif"],
+      },
+    },
+  },
 };

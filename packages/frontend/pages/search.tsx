@@ -32,7 +32,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-8 md:px-24 pb-20 md:pb-44">
+    <div className="flex flex-col items-center p-8 md:px-24 pb-20 md:pb-44 w-full">
       <div className="flex flex-col sm:flex-row w-full mt-12">
         <input
           type="text"
@@ -51,17 +51,17 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
         </button>
       </div>
 
-      <div className="container mx-auto w-[1150px] max-w-[90%] mt-14">
+      <div className="container mx-auto w-[1350px] max-w-[100%]  mt-14">
         <div className="grid md:grid-cols-3 gap-8">
           {records?.map(record => (
             <div key={record.id} className="border-t-base-200 border-t-[10px] py-6">
-              <h2 className="text-xl mb-2">
+              <p className="text-2xl md:text-4xl mb-2">
                 <Link href={`/records/${record.slug}`}>
                   <span className="font-bold">{record.title}</span>
                 </Link>
-              </h2>
+              </p>
               <p>
-                <span className="italic">{record.organization}</span>
+                <span className="text-lg md:text-2xl">{record.organization}</span>
               </p>
               <p className="mt-4">
                 <span className="italic break-words" dangerouslySetInnerHTML={{ __html: record.headline }}></span>
