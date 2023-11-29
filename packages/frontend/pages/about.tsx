@@ -67,12 +67,11 @@ const About: NextPage = () => {
             If you'd like to contribute or build on top of the Collective DAO Catalog, please get in touch on{" "}
             <Link
               href="https://github.com/amy-jung/collectivedaoarchives.catalog"
-              className="bg-accent text-primary link p-1 pt-0"
+              className="link-highlight"
               target="_blank"
             >
-              GitHub
+              GitHub.
             </Link>
-            .
           </p>
         </div>
       </div>

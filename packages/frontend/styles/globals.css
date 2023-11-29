@@ -31,8 +31,34 @@ h6 {
 }
 
 a:hover {
-  opacity: 0.7;
-  transition: 0.3s opacity;
+  transition: 0.3s all;
+}
+
+.link {
+  text-underline-offset: 3px;
+}
+
+.link:hover,
+.link:focus {
+  @apply text-accent;
+}
+
+.link:active {
+  @apply text-accent;
+  opacity: 0.8;
+}
+
+.link-highlight {
+  @apply bg-accent;
+  @apply text-primary;
+  padding: 0 0.25rem 0.25rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-highlight:hover,
+.link-highlight:focus {
+  opacity: 0.8;
 }
 
 [data-rk] .rainbow-kit-connect [data-testid="rk-connect-button"] {

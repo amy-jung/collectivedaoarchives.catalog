@@ -21,10 +21,6 @@ module.exports = {
           success: "#6EDA60",
           warning: "#F9D551",
           error: "#ED7267",
-
-          ".link": {
-            textUnderlineOffset: "3px",
-          },
         },
       },
     ],
