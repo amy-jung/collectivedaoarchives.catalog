@@ -9,8 +9,8 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
   return (
     <div className="container mx-auto w-[1150px] max-w-[90%] mt-14 pb-20 md:pb-44">
       <div className="border-b-200 border-b-[10px] mb-10">
-        <h1 className="font-bold text-4xl mb-4">{record.title}</h1>
-        <span className="mb-8 block">{record.organization}</span>
+        <h1 className="font-bold text-2xl md:text-6xl mb-4 leading-none">{record.title}</h1>
+        <span className="mb-8 block text-lg md:text-2xl">{record.organization}</span>
       </div>
 
       <div className="flex flex-col md:flex-row">

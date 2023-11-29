@@ -6,7 +6,7 @@ const About: NextPage = () => {
   return (
     <div className="flex flex-col items-center bg-primary text-white pb-20 md:pb-52">
       <div className="container mx-auto w-[1080px] max-w-[90%] mt-16 md:mt-44">
-        <h1 className="font-bold text-xl md:text-6xl mb-10">THE COLLECTIVE DAO CATALOG</h1>
+        <h1 className="font-bold text-2xl md:text-6xl mb-10 leading-none">THE COLLECTIVE DAO CATALOG</h1>
         <div className="text-lg md:text-2xl italic">
           <p className="bg-accent text-primary px-1 inline">
             The Collective DAO Catalog is an open source database of off-chain, DAO historical events.

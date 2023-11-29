@@ -44,7 +44,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
       </div>
       <div className="container mx-auto w-[1350px] max-w-[90%] mt-14">
         <div className="mb-12">
-          <Link href="/records" className="font-bold text-4xl">
+          <Link href="/records" className="font-bold text-4xl link-hover">
             See All records {">"}
           </Link>
         </div>
