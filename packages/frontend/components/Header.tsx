@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -10,10 +11,15 @@ export const Header = () => {
   const isMainPage = pathname === "/";
 
   return (
-    <div className="flex justify-between items-center p-4 bg-accent">
+    <div className="flex justify-between items-center px-16 pt-11 pb-14 bg-accent">
       <span className="font-bold sm:text-xl">
-        <Link href="/" className={isMainPage ? "hidden" : "hidden sm:inline"}>
-          DAO COLLECTIVE CATALOG
+        <Link href="/" className="flex gap-10 items-center">
+          <span>
+            <Image src="/assets/logo.svg" alt="Logo" width={64} height={64} />
+          </span>
+          <span className={isMainPage ? "hidden" : "hidden sm:inline font-heading text-2xl mt-2"}>
+            COLLECTIVE DAO CATALOG
+          </span>
         </Link>
       </span>
       <div className="flex gap-6 sm:gap-12 items-center">
@@ -29,7 +35,7 @@ export const Header = () => {
           </li>
         </ul>
         <div className="rainbow-kit-connect">
-          <ConnectButton chainStatus="icon" label="Sign in" />
+          <ConnectButton chainStatus="icon" label="Connect" />
         </div>
       </div>
     </div>
