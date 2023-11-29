@@ -12,7 +12,7 @@ export const Footer = () => {
       </Link>
       <Link
         href="https://github.com/amy-jung/collectivedaoarchives.catalog"
-        className="font-bold sm:text-xl"
+        className="font-bold sm:text-2xl"
         target="_blank"
       >
         <Image src="/assets/github.png" alt="GitHub logo" width={45} height={45} />
