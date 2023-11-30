@@ -11,9 +11,9 @@ export const Header = () => {
   const isMainPage = pathname === "/";
 
   return (
-    <div className="flex justify-between items-center px-16 pt-11 pb-14 bg-accent">
+    <div className="flex justify-between items-center px-12 py-6 bg-accent">
       <span className="font-bold sm:text-xl">
-        <Link href="/" className="flex gap-10 items-center">
+        <Link href="/" className="flex gap-6 items-center">
           <span>
             <Image src="/assets/logo.svg" alt="Logo" width={64} height={64} />
           </span>
