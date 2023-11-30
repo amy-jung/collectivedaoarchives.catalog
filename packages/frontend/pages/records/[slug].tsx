@@ -5,6 +5,15 @@ interface RecordProps {
   record: any;
 }
 
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return new Date(dateString).toLocaleDateString("en-US", options);
+};
+
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
   return (
     <div className="container mx-auto w-[1150px] max-w-[90%] mt-14 pb-20 md:pb-44">
@@ -31,7 +40,7 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           </div>
           <div>
             <span className="font-bold">Date:</span>
-            <span className="block">{record.date}</span>
+            <span className="block">{record.date ? formatDate(record.date) : "-"}</span>
           </div>
           <div>
             <span className="font-bold">Category:</span>
