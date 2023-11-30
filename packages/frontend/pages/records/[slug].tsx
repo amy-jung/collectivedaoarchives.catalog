@@ -34,7 +34,7 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           </div>
           <div>
             <span className="font-bold">Source:</span>
-            <a className="block link" href={record.link} target="_blank">
+            <a className="block link break-all" href={record.link} target="_blank">
               {record.link}
             </a>
           </div>
