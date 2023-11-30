@@ -55,7 +55,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
       <div className="container mx-auto w-[1350px] max-w-[100%]  mt-14">
         <div className="grid md:grid-cols-3 gap-8">
           {records?.map(record => (
-            <RecordTeaser record={record} />
+            <RecordTeaser record={record} showHeadline={true} />
           ))}
         </div>
       </div>
