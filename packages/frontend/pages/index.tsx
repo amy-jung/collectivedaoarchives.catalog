@@ -51,7 +51,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {records?.slice(0, 6).map(record => (
-            <RecordTeaser record={record} />
+            <RecordTeaser key={record.id} record={record} />
           ))}
         </div>
       </div>
