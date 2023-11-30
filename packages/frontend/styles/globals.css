@@ -26,6 +26,15 @@ h6 {
   letter-spacing: 0.7px;
 }
 
+.record-view-mode-full h1,
+.record-view-mode-full h2,
+.record-view-mode-full h3,
+.record-view-mode-full h4,
+.record-view-mode-full h5,
+.record-view-mode-full h6 {
+  font-family: var(--font-inter);
+}
+
 .font-heading {
   letter-spacing: 0.7px;
 }

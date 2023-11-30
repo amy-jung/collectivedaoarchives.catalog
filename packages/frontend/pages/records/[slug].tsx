@@ -5,11 +5,20 @@ interface RecordProps {
   record: any;
 }
 
+const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return new Date(dateString).toLocaleDateString("en-US", options);
+};
+
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
   return (
     <div className="container mx-auto w-[1150px] max-w-[90%] mt-14 pb-20 md:pb-44">
       <div className="border-b-200 border-b-[10px] mb-10">
-        <h1 className="font-bold text-2xl md:text-6xl mb-4 leading-none">{record.title}</h1>
+        <h1 className="font-bold text-xl md:text-5xl mb-4 !leading-[1.1]">{record.title}</h1>
         <span className="mb-8 block text-lg md:text-2xl">{record.organization}</span>
       </div>
 
@@ -25,13 +34,13 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           </div>
           <div>
             <span className="font-bold">Source:</span>
-            <a className="block link" href={record.link} target="_blank">
+            <a className="block link break-all" href={record.link} target="_blank">
               {record.link}
             </a>
           </div>
           <div>
             <span className="font-bold">Date:</span>
-            <span className="block">{record.date}</span>
+            <span className="block">{record.date ? formatDate(record.date) : "-"}</span>
           </div>
           <div>
             <span className="font-bold">Category:</span>

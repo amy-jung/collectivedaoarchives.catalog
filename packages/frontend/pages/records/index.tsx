@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { GetServerSideProps, NextPage } from "next";
+import { RecordTeaser } from "~~/components/RecordTeaser";
 
 interface RecordsProps {
   // ToDo. Define types (swagger on backend?)
@@ -30,16 +31,7 @@ const RecordsIndex: NextPage<RecordsProps> = ({ records, totalCount }) => {
       <div className="container mx-auto w-[1350px] max-w-[90%] mt-14">
         <div className="grid md:grid-cols-3 gap-8">
           {records?.map(record => (
-            <div key={record.id} className="border-t-base-200 border-t-[10px] py-6">
-              <p className="text-2xl md:text-4xl mb-2">
-                <Link href={`/records/${record.slug}`}>
-                  <span className="font-bold">{record.title}</span>
-                </Link>
-              </p>
-              <p>
-                <span className="text-lg md:text-2xl">{record.organization}</span>
-              </p>
-            </div>
+            <RecordTeaser key={record.id} record={record} />
           ))}
         </div>
       </div>
