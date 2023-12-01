@@ -15,7 +15,11 @@ const PAGE_SIZE = 9;
 const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
-  const [q, setQ] = useState<string>(router.query.q as string);
+  const [q, setQ] = useState<string>((router.query.q || "") as string);
+  const [organization, setOrganization] = useState<string>((router.query.organization || "") as string);
+  const [author, setAuthor] = useState<string>((router.query.author || "") as string);
+  const [categoryId, setCategoryId] = useState<string>((router.query.categoryId || "") as string);
+  const [sortBy, setSortBy] = useState<string>((router.query.sortBy || "") as string);
 
   const onSearch = () => {
     router.push(`/search?q=${q}`);
@@ -29,7 +33,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const endIndex = startIndex + PAGE_SIZE;
 
   const goToPage = (page: number) => {
-    router.push(`/search?q=${q}&page=${page}`);
+    router.push(`/search?q=${q}&organization=${organization}&author=${author}&categoryId=${categoryId}&sortBy=${sortBy}&page=${page}`);
   };
 
   return (
@@ -98,12 +102,13 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const organization = context.query.organization || "";
   const author = context.query.author || "";
   const categoryId = context.query.categoryId || "";
+  const sortBy = context.query.sortBy || "";
   // ToDo. Define types (swagger on backend?)
   let records: any[] = [];
   let totalCount: number = 0;
 
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}&organization=${organization}&author=${author}&categoryId=${categoryId}`);
+    const res = await fetch(`${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}&organization=${organization}&author=${author}&categoryId=${categoryId}&sortBy=${sortBy}`);
     if (!res.ok) {
       throw new Error(res.statusText);
     }
