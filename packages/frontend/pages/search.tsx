@@ -95,12 +95,15 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentPage = Number(context.query.page) || 1;
   const q = context.query.q || "";
+  const organization = context.query.organization || "";
+  const author = context.query.author || "";
+  const categoryId = context.query.categoryId || "";
   // ToDo. Define types (swagger on backend?)
   let records: any[] = [];
   let totalCount: number = 0;
 
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}`);
+    const res = await fetch(`${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}&organization=${organization}&author=${author}&categoryId=${categoryId}`);
     if (!res.ok) {
       throw new Error(res.statusText);
     }

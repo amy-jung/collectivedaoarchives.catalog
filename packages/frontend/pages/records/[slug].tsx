@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
 
 interface RecordProps {
   // ToDo. Define types (swagger on backend?)
@@ -19,7 +20,9 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
     <div className="container mx-auto w-[1150px] max-w-[90%] mt-14 pb-20 md:pb-44">
       <div className="border-b-200 border-b-[10px] mb-10">
         <h1 className="font-bold text-xl md:text-5xl mb-4 !leading-[1.1]">{record.title}</h1>
-        <span className="mb-8 block text-lg md:text-2xl">{record.organization}</span>
+        <Link href={`/search?organization=${record.organization}`}>
+          <span className="mb-8 block text-lg md:text-2xl">{record.organization}</span>
+        </Link>
       </div>
 
       <div className="flex flex-col md:flex-row">
@@ -30,7 +33,9 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
         <div className="border-t-base-200 border-t-[10px] pt-6 mt-6 md:pt-0 md:mt-0 md:border-0 md:w-1/4 flex flex-col gap-12">
           <div>
             <span className="font-bold">Protocol:</span>
-            <span className="block">{record.organization}</span>
+            <span className="block">
+              <Link href={`/search?organization=${record.organization}`}>{record.organization}</Link>
+            </span>
           </div>
           <div>
             <span className="font-bold">Source:</span>
@@ -44,7 +49,18 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           </div>
           <div>
             <span className="font-bold">Category:</span>
-            <span className="block">{record.category?.name ?? "N/A"}</span>
+            <span className="block">
+              {record.category ?
+                <Link href={`/search?categoryId=${record.category.id}`}>{record.category.name}</Link>
+                : "N/A"
+              }
+            </span>
+          </div>
+          <div>
+            <span className="font-bold">Author:</span>
+            <span className="block">
+              <Link href={`/search?author=${record.author}`}>{record.author}</Link>
+            </span>
           </div>
         </div>
       </div>
