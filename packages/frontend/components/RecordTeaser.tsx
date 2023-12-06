@@ -8,7 +8,9 @@ export const RecordTeaser = ({ record, showHeadline = false }: { record: any; sh
       </Link>
     </h2>
     <p>
-      <span className="text-lg md:text-2xl">{record.organization}</span>
+      <Link href={`/search?organization=${record.organization}`}>
+        <span className="text-lg md:text-2xl">{record.organization}</span>
+      </Link>
     </p>
     {showHeadline && (
       <p className="mt-4">

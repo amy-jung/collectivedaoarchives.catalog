@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import type { GetServerSideProps, NextPage } from "next";
 import { RecordTeaser } from "~~/components/RecordTeaser";
@@ -15,7 +14,12 @@ const PAGE_SIZE = 9;
 const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
-  const [q, setQ] = useState<string>(router.query.q as string);
+
+  const [q, setQ] = useState<string>((router.query.q || "") as string);
+  const [organization, setOrganization] = useState<string>((router.query.organization || "") as string);
+  const [author, setAuthor] = useState<string>((router.query.author || "") as string);
+  const [categoryId, setCategoryId] = useState<string>((router.query.categoryId || "") as string);
+  const [sortBy, setSortBy] = useState<string>((router.query.sortBy || "") as string);
   const [isSearchLoading, setIsSearchLoading] = useState(false);
 
   const onSearch = async () => {
@@ -27,12 +31,17 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   // Calculate the total number of pages
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
 
-  // Calculate the start and end indexes of the current page
-  const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const endIndex = startIndex + PAGE_SIZE;
-
   const goToPage = (page: number) => {
-    router.push(`/search?q=${q}&page=${page}`);
+    const queryParams = new URLSearchParams();
+
+    if (q) queryParams.append("q", q);
+    if (organization) queryParams.append("organization", organization);
+    if (author) queryParams.append("author", author);
+    if (categoryId) queryParams.append("categoryId", categoryId);
+    if (sortBy) queryParams.append("sortBy", sortBy);
+
+    queryParams.append("page", page.toString());
+    router.push(`/search?${queryParams.toString()}`);
   };
 
   return (
@@ -98,12 +107,18 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
 export const getServerSideProps: GetServerSideProps = async context => {
   const currentPage = Number(context.query.page) || 1;
   const q = context.query.q || "";
+  const organization = context.query.organization || "";
+  const author = context.query.author || "";
+  const categoryId = context.query.categoryId || "";
+  const sortBy = context.query.sortBy || "";
   // ToDo. Define types (swagger on backend?)
   let records: any[] = [];
   let totalCount: number = 0;
 
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}`);
+    const res = await fetch(
+      `${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}&organization=${organization}&author=${author}&categoryId=${categoryId}&sortBy=${sortBy}`,
+    );
     if (!res.ok) {
       throw new Error(res.statusText);
     }
