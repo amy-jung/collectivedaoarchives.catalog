@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 
 const router = express.Router();
@@ -22,14 +22,14 @@ router.get("/", async (req: Request, res: Response) => {
   }
 
   const sortByToSql = {
-    "date-desc": Prisma.sql`"date" DESC`,
-    "date-asc": Prisma.sql`"date" ASC`,
-    "rank": Prisma.sql`ts_rank("textSearch", websearch_to_tsquery('english', ${q})) DESC`,
-    "author-desc": Prisma.sql`"author" DESC`,
-    "author-asc": Prisma.sql`"author" ASC`,
-    "organization-desc": Prisma.sql`"organization" DESC`,
-    "organization-asc": Prisma.sql`"organization" ASC`,
-  }
+    "date-desc": Prisma.sql`CASE WHEN date IS NULL THEN 1 ELSE 0 END, "date" DESC`,
+    "date-asc": Prisma.sql`CASE WHEN date IS NULL THEN 1 ELSE 0 END, "date" ASC`,
+    rank: Prisma.sql`ts_rank("textSearch", websearch_to_tsquery('english', ${q})) DESC`,
+    "author-desc": Prisma.sql`CASE WHEN NULLIF(author, '') IS NULL THEN 1 ELSE 0 END, LOWER("author") DESC`,
+    "author-asc": Prisma.sql`CASE WHEN NULLIF(author, '') IS NULL THEN 1 ELSE 0 END, LOWER("author") ASC`,
+    "organization-desc": Prisma.sql`CASE WHEN NULLIF(organization, '') IS NULL THEN 1 ELSE 0 END, LOWER("organization") DESC`,
+    "organization-asc": Prisma.sql`CASE WHEN NULLIF(organization, '') IS NULL THEN 1 ELSE 0 END, LOWER("organization") ASC`,
+  };
 
   if (!Object.keys(sortByToSql).includes(sortBy)) {
     sortBy = "rank";
@@ -69,9 +69,7 @@ router.get("/", async (req: Request, res: Response) => {
       searchConditions.push(Prisma.sql`"categoryId" = ${categoryId}`);
     }
 
-    const where = searchConditions.length ?
-      Prisma.sql`where ${Prisma.join(searchConditions, ' and ')}` :
-      Prisma.empty;
+    const where = searchConditions.length ? Prisma.sql`where ${Prisma.join(searchConditions, " and ")}` : Prisma.empty;
 
     records = (await prisma.$queryRaw`
       SELECT ts_headline('english', CONCAT(title, content, organization, author), websearch_to_tsquery('english', ${q}), 'MaxFragments=2') as headline, id, title, content, organization, link, date, slug, "createdAt", "updatedAt", date, "categoryId", author FROM "Record"
