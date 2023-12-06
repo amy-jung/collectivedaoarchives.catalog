@@ -12,9 +12,11 @@ interface RecordsProps {
 
 const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const [q, setQ] = useState<string>("");
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
   const { push } = useRouter();
 
   const onSearch = () => {
+    setIsSearchLoading(true);
     push(`/search?q=${q}`);
   };
 
@@ -37,8 +39,8 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
               className="grow p-2 px-6 border-2 border-primary"
               placeholder={`Search all ${totalCount} Records...`}
             />
-            <button className="btn btn-primary rounded-none" onClick={onSearch}>
-              SEARCH
+            <button className="btn btn-primary rounded-none w-[100px]" onClick={onSearch}>
+              {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
             </button>
           </div>
         </div>

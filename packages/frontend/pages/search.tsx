@@ -16,9 +16,12 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
   const currentPage = Number(router.query.page) || 1;
   const [q, setQ] = useState<string>(router.query.q as string);
+  const [isSearchLoading, setIsSearchLoading] = useState(false);
 
-  const onSearch = () => {
-    router.push(`/search?q=${q}`);
+  const onSearch = async () => {
+    setIsSearchLoading(true);
+    await router.push(`/search?q=${q}`);
+    setIsSearchLoading(false);
   };
 
   // Calculate the total number of pages
@@ -47,8 +50,8 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
           className="grow p-2 px-6 border-2 border-primary"
           placeholder={`Search...`}
         />
-        <button className="btn btn-primary rounded-none" onClick={onSearch}>
-          SEARCH
+        <button className="btn btn-primary rounded-none w-[100px]" onClick={onSearch}>
+          {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
         </button>
       </div>
 
