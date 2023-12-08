@@ -88,7 +88,7 @@ const Contribute: NextPage = () => {
         <p className="text-orange-600 mt-2 mb-2">There were errors on some links:</p>
         <ul className="list-disc list-inside">
           {result.map(item => (
-            <li className={`mb-1 ${item.success ? "text-green-700" : "text-red-600"}`}>
+            <li key={item.url} className={`mb-1 ${item.success ? "text-green-700" : "text-red-600"}`}>
               <span className="font-bold">URL:</span> {item.url}
               {!item.success && <span> - <span className="font-bold">Error:</span> {item.error}</span>}
             </li>
