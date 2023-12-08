@@ -117,7 +117,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 
   try {
     const res = await fetch(
-      `${process.env.BACKEND_URL}/api/search?q=${q}&page=${currentPage}&organization=${organization}&author=${author}&categoryId=${categoryId}&sortBy=${sortBy}`,
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/search?q=${q}&page=${currentPage}&organization=${organization}&author=${author}&categoryId=${categoryId}&sortBy=${sortBy}`,
     );
     if (!res.ok) {
       throw new Error(res.statusText);

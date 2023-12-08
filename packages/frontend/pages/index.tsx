@@ -68,7 +68,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let totalCount: number = 0;
 
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/records?page=${currentPage}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/records?page=${currentPage}`);
     if (!res.ok) {
       throw new Error(res.statusText);
     }

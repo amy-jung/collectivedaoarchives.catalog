@@ -79,7 +79,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { slug } = params;
 
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/records/${slug}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/records/${slug}`);
 
     if (!res.ok) {
       throw new Error("Record not found");
