@@ -32,3 +32,12 @@ model Category {
   name   String   @unique
   Record Record[]
 }
+
+model Submission {
+  id           Int        @id @default(autoincrement())
+  url          String     @unique
+  status       Int        @default(0)
+  address      String?    @db.VarChar(42)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}

@@ -6,6 +6,7 @@ import NextNProgress from "nextjs-progressbar";
 import { WagmiConfig } from "wagmi";
 import { Footer } from "~~/components/Footer";
 import { Header } from "~~/components/Header";
+import { Toaster } from "react-hot-toast";
 import { chains, wagmiConfig } from "~~/services/web3/wagmiConnectors";
 import "~~/styles/globals.css";
 
@@ -23,6 +24,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           </main>
           <Footer />
         </div>
+        <Toaster />
       </RainbowKitProvider>
     </WagmiConfig>
   );
