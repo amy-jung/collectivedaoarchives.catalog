@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Submit" (
+CREATE TABLE "Submission" (
     "id" SERIAL NOT NULL,
     "url" TEXT NOT NULL,
     "status" INTEGER NOT NULL DEFAULT 0,
@@ -7,8 +7,8 @@ CREATE TABLE "Submit" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Submit_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Submission_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Submit_url_key" ON "Submit"("url");
+CREATE UNIQUE INDEX "Submission_url_key" ON "Submission"("url");

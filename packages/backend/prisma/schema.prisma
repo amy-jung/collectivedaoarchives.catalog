@@ -33,7 +33,7 @@ model Category {
   Record Record[]
 }
 
-model Submit {
+model Submission {
   id           Int        @id @default(autoincrement())
   url          String     @unique
   status       Int        @default(0)

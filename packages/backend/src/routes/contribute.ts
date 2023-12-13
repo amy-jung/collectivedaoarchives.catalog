@@ -32,12 +32,12 @@ router.post("/", async (req: Request, res: Response) => {
       new URL(url);
 
       const urlData = {
-        url
+        url,
       } as {
         url: string;
-      }
+      };
 
-      await prisma.submit.create({
+      await prisma.submission.create({
         data: urlData,
       });
 
@@ -49,7 +49,7 @@ router.post("/", async (req: Request, res: Response) => {
         error = "Invalid url";
       }
       if (err instanceof Prisma.PrismaClientKnownRequestError) {
-        if (err.code === 'P2002') {
+        if (err.code === "P2002") {
           error = "Link already submitted";
         }
       }
