@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { NextPage } from "next";
-import { toast, Toast } from "react-hot-toast";
+import { Toast, toast } from "react-hot-toast";
 
 type ResultUrl = {
   url: string;
@@ -56,7 +56,9 @@ const Contribute: NextPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ urls: urls.split("\n").filter(url => url !== "" && url !== " " && url !== "\n" && url !== "\r\n") }),
+        body: JSON.stringify({
+          urls: urls.split("\n").filter(url => url !== "" && url !== " " && url !== "\n" && url !== "\r\n"),
+        }),
       });
 
       if (response.ok) {
@@ -67,7 +69,7 @@ const Contribute: NextPage = () => {
           toast.success("Links submitted!");
           setUrls("");
         } else {
-          toast.error((t) => resultFormatted(t, resultData), { duration: 60000 });
+          toast.error(t => resultFormatted(t, resultData), { duration: 60000 });
         }
       } else {
         const result = await response.json();
@@ -90,16 +92,23 @@ const Contribute: NextPage = () => {
           {result.map(item => (
             <li key={item.url} className={`mb-1 ${item.success ? "text-green-700" : "text-red-600"}`}>
               <span className="font-bold">URL:</span> {item.url}
-              {!item.success && <span> - <span className="font-bold">Error:</span> {item.error}</span>}
+              {!item.success && (
+                <span>
+                  {" "}
+                  - <span className="font-bold">Error:</span> {item.error}
+                </span>
+              )}
             </li>
           ))}
         </ul>
         <div className="text-right">
-          <button className="btn" onClick={() => toast.dismiss(t.id)}>Close</button>
+          <button className="btn" onClick={() => toast.dismiss(t.id)}>
+            Close
+          </button>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="flex flex-col items-center p-8 md:px-24">
