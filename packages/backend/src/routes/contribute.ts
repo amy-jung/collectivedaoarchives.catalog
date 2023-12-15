@@ -1,11 +1,14 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
+import { hashMessage, recoverTypedDataAddress } from "viem";
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 type ReqBody = {
   urls: string[];
+  signature: `0x${string}`;
+  address: string;
 };
 
 type ResultUrl = {
@@ -14,8 +17,18 @@ type ResultUrl = {
   error?: string;
 };
 
+const EIP_712_DOMAIN = {
+  name: "Collective DAO Catalog",
+  version: "1",
+  chainId: 10,
+} as const;
+
+const EIP_712_TYPES = {
+  Message: [{ name: "urlHash", type: "string" }],
+} as const;
+
 router.post("/", async (req: Request, res: Response) => {
-  const { urls }: ReqBody = req.body;
+  const { urls, signature, address }: ReqBody = req.body;
 
   if (!urls) {
     return res.status(400).json({ error: "Missing required parameter: urls" });
@@ -23,6 +36,20 @@ router.post("/", async (req: Request, res: Response) => {
 
   if (!Array.isArray(urls)) {
     return res.status(400).json({ error: "Invalid parameter: urls" });
+  }
+
+  // Validate Signature
+  const recoveredAddress = await recoverTypedDataAddress({
+    domain: EIP_712_DOMAIN,
+    types: EIP_712_TYPES,
+    primaryType: "Message",
+    message: { urlHash: hashMessage(JSON.stringify(urls)) },
+    signature,
+  });
+
+  if (recoveredAddress !== address) {
+    console.error("recoveredAddress error", recoveredAddress, address);
+    return res.status(401).json({ message: "Invalid signature" });
   }
 
   const result: ResultUrl[] = [];

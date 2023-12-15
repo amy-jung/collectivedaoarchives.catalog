@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import { Toast, toast } from "react-hot-toast";
+import { hashMessage } from "viem";
+import { useAccount, useSignTypedData } from "wagmi";
 
 type ResultUrl = {
   url: string;
@@ -8,22 +10,48 @@ type ResultUrl = {
   error?: string;
 };
 
+const EIP_712_DOMAIN = {
+  name: "Collective DAO Catalog",
+  version: "1",
+  chainId: 10,
+} as const;
+
+const EIP_712_TYPES = {
+  Message: [{ name: "urlHash", type: "string" }],
+} as const;
+
 const Contribute: NextPage = () => {
   const [url, setUrl] = useState<string>("");
   const [urls, setUrls] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const { signTypedDataAsync } = useSignTypedData();
+  const { address } = useAccount();
+
   const onSubmitUrl = async () => {
     try {
       setIsSubmitting(true);
 
-      // TODO: add signature
+      let signature;
+      try {
+        signature = await signTypedDataAsync({
+          domain: EIP_712_DOMAIN,
+          types: EIP_712_TYPES,
+          primaryType: "Message",
+          message: { urlHash: hashMessage(JSON.stringify([url])) },
+        });
+      } catch (e) {
+        console.error("Error signing message", e);
+        toast.error("Error signing message");
+        return;
+      }
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contribute`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ urls: [url] }),
+        body: JSON.stringify({ urls: [url], signature, address }),
       });
 
       if (response.ok) {
@@ -49,15 +77,31 @@ const Contribute: NextPage = () => {
   const onSubmitUrls = async () => {
     try {
       setIsSubmitting(true);
+      const parsedUrls = urls.split("\n").filter(url => url !== "" && url !== " " && url !== "\n" && url !== "\r\n");
 
-      // TODO: add signature
+      let signature;
+      try {
+        signature = await signTypedDataAsync({
+          domain: EIP_712_DOMAIN,
+          types: EIP_712_TYPES,
+          primaryType: "Message",
+          message: { urlHash: hashMessage(JSON.stringify(parsedUrls)) },
+        });
+      } catch (e) {
+        console.error("Error signing message", e);
+        toast.error("Error signing message");
+        return;
+      }
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contribute`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          urls: urls.split("\n").filter(url => url !== "" && url !== " " && url !== "\n" && url !== "\r\n"),
+          urls: parsedUrls,
+          signature,
+          address,
         }),
       });
 
