@@ -169,9 +169,15 @@ const Contribute: NextPage = () => {
               className="grow p-2 px-6 border-2 border-primary"
               placeholder="http://"
             />
-            <button className="btn btn-primary rounded-none w-[100px]" onClick={onSubmitUrl}>
-              {!isSubmitting ? "SUBMIT" : <span className="loading loading-spinner"></span>}
-            </button>
+            {address ? (
+              <button className="btn btn-primary rounded-none w-[100px]" onClick={onSubmitUrl}>
+                {!isSubmitting ? "SUBMIT" : <span className="loading loading-spinner"></span>}
+              </button>
+            ) : (
+              <button className="btn btn-primary rounded-none w-[200px]" disabled>
+                Connect wallet
+              </button>
+            )}
           </div>
         </div>
         <div className="flex flex-col mt-12">
@@ -184,9 +190,15 @@ const Contribute: NextPage = () => {
               placeholder="http://"
               rows={8}
             />
-            <button className="btn btn-primary rounded-none w-[100px] flex mt-2" onClick={onSubmitUrls}>
-              {!isSubmitting ? "SUBMIT" : <span className="loading loading-spinner"></span>}
-            </button>
+            {address ? (
+              <button className="btn btn-primary rounded-none w-[100px] flex mt-2" onClick={onSubmitUrls}>
+                {!isSubmitting ? "SUBMIT" : <span className="loading loading-spinner"></span>}
+              </button>
+            ) : (
+              <button className="btn btn-primary rounded-none w-[200px] flex mt-2" disabled>
+                Connect wallet
+              </button>
+            )}
           </div>
         </div>
       </div>
