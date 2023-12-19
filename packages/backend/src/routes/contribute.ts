@@ -65,7 +65,10 @@ router.post("/", async (req: Request, res: Response) => {
       };
 
       await prisma.submission.create({
-        data: urlData,
+        data: {
+          ...urlData,
+          address,
+        },
       });
 
       result.push({ url, success: true });
