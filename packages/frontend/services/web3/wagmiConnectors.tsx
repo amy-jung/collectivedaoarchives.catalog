@@ -1,12 +1,12 @@
 import { getDefaultWallets } from "@rainbow-me/rainbowkit";
-import { mainnet, optimism } from "viem/chains";
+import { optimism } from "viem/chains";
 import { configureChains, createConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 
 /**
  * Chains for the app
  */
-export const { chains, publicClient } = configureChains([optimism, mainnet], [publicProvider()]);
+export const { chains, publicClient } = configureChains([optimism], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "Collective DAO Archives Catalog",
