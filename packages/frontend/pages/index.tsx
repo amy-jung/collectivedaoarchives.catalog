@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import type { GetServerSideProps, NextPage } from "next";
+import { RecordCta } from "~~/components/RecordCta";
 import { RecordTeaser } from "~~/components/RecordTeaser";
 
 interface RecordsProps {
@@ -52,9 +53,10 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {records?.slice(0, 6).map(record => (
+          {records?.map(record => (
             <RecordTeaser key={record.id} record={record} />
           ))}
+          <RecordCta />
         </div>
       </div>
     </div>
