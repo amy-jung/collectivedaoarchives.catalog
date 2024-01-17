@@ -53,7 +53,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
-          {records?.slice(0, 8).map(record => (
+          {records?.map(record => (
             <RecordTeaser key={record.id} record={record} />
           ))}
           <RecordCta />
