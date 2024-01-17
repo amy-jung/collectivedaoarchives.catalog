@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import type { GetServerSideProps, NextPage } from "next";
+import { EmptyResults } from "~~/components/EmptyResults";
 import { RecordTeaser } from "~~/components/RecordTeaser";
 
 interface RecordsProps {
@@ -21,6 +22,8 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const [categoryId, setCategoryId] = useState<string>((router.query.categoryId || "") as string);
   const [sortBy, setSortBy] = useState<string>((router.query.sortBy || "") as string);
   const [isSearchLoading, setIsSearchLoading] = useState(false);
+
+  const emptyResults = Number(totalCount) === 0;
 
   const onSearch = async () => {
     setIsSearchLoading(true);
@@ -44,9 +47,9 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
     router.push(`/search?${queryParams.toString()}`);
   };
 
-  return (
-    <div className="flex flex-col items-center p-8 md:px-24 pb-20 md:pb-44 w-full">
-      <div className="flex flex-col sm:flex-row w-full mt-12">
+  const SearchForm = (
+    <div className="flex flex-col items-center p-8 md:px-24 pb-20 w-full bg-accent">
+      <div className="flex flex-col sm:flex-row w-full max-w-[1350px] mt-12">
         <input
           type="text"
           value={q}
@@ -63,13 +66,15 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
           {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
         </button>
       </div>
+    </div>
+  );
 
-      <div className="container mx-auto w-[1350px] max-w-[100%]  mt-14">
-        <div className="grid md:grid-cols-3 gap-8">
-          {records?.map(record => (
-            <RecordTeaser key={record.id} record={record} showHeadline={true} />
-          ))}
-        </div>
+  const SearchResult = (
+    <div className="container mx-auto w-[1350px] max-w-[100%] mt-14 mb-24">
+      <div className="grid md:grid-cols-3 gap-8">
+        {records?.map(record => (
+          <RecordTeaser key={record.id} record={record} showHeadline={true} />
+        ))}
       </div>
       <div className="flex justify-between items-center mt-8 gap-4">
         <button
@@ -100,6 +105,16 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
           Next
         </button>
       </div>
+    </div>
+  );
+
+  return (
+    <div>
+      {emptyResults && (
+        <div className="absolute w-[600px] h-[660px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:600px]" />
+      )}
+      {SearchForm}
+      {emptyResults ? <EmptyResults /> : SearchResult}
     </div>
   );
 };
