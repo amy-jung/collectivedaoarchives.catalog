@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import type { GetServerSideProps, NextPage } from "next";
+import { RecordCta } from "~~/components/RecordCta";
 import { RecordTeaser } from "~~/components/RecordTeaser";
 
 interface RecordsProps {
@@ -9,7 +10,7 @@ interface RecordsProps {
   totalCount: number;
 }
 
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 8;
 
 const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
   const router = useRouter();
@@ -69,6 +70,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
           {records?.map(record => (
             <RecordTeaser key={record.id} record={record} showHeadline={true} />
           ))}
+          <RecordCta />
         </div>
       </div>
       <div className="flex justify-between items-center mt-8 gap-4">
