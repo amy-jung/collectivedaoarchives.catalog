@@ -37,7 +37,7 @@ You'll need NodeJS v18+, Yarn and Docker installed.
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/amy-jung/collectivedaoarchives.catalog.git`
+git clone https://github.com/amy-jung/collectivedaoarchives.catalog.git
 cd collectivedaoarchives.catalog
 ```
 
