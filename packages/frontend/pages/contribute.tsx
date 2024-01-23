@@ -166,7 +166,7 @@ const Contribute: NextPage = () => {
               type="text"
               value={url}
               onChange={value => setUrl(value.target.value)}
-              className="grow p-2 px-6 border-2 border-primary"
+              className="grow p-2 px-6 border-2 border-primary outline-0"
               placeholder="http://"
             />
             {address ? (
@@ -186,7 +186,7 @@ const Contribute: NextPage = () => {
             <textarea
               value={urls}
               onChange={value => setUrls(value.target.value)}
-              className="grow p-2 px-6 border-2 border-primary flex w-[100%]"
+              className="grow p-2 px-6 border-2 border-primary flex w-[100%] outline-0"
               placeholder="http://"
               rows={8}
             />

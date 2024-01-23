@@ -1,5 +1,5 @@
-import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
+import { GetServerSideProps, NextPage } from "next";
 
 interface RecordProps {
   // ToDo. Define types (swagger on backend?)
@@ -33,8 +33,10 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
         <div className="border-t-base-200 border-t-[10px] pt-6 mt-6 md:pt-0 md:mt-0 md:border-0 md:w-1/4 flex flex-col gap-12">
           <div>
             <span className="font-bold">Protocol:</span>
-            <span className="block">
-              <Link href={`/search?organization=${record.organization}`}>{record.organization}</Link>
+            <span className="block mt-3">
+              <Link href={`/search?organization=${record.organization}`} className="link-boxed">
+                {record.organization}
+              </Link>
             </span>
           </div>
           <div>
@@ -49,17 +51,22 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           </div>
           <div>
             <span className="font-bold">Category:</span>
-            <span className="block">
-              {record.category ?
-                <Link href={`/search?categoryId=${record.category.id}`}>{record.category.name}</Link>
-                : "N/A"
-              }
+            <span className="block mt-3">
+              {record.category ? (
+                <Link href={`/search?categoryId=${record.category.id}`} className="link-boxed">
+                  {record.category.name}
+                </Link>
+              ) : (
+                "N/A"
+              )}
             </span>
           </div>
           <div>
             <span className="font-bold">Author:</span>
-            <span className="block">
-              <Link href={`/search?author=${record.author}`}>{record.author}</Link>
+            <span className="block mt-3">
+              <Link href={`/search?author=${record.author}`} className="link-boxed">
+                {record.author}
+              </Link>
             </span>
           </div>
         </div>

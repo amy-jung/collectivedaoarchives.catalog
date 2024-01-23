@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <div className="flex items-center justify-between p-16 py-12 bg-accent">
       <Link href="/about" className="font-bold sm:text-2xl">
-        About
+        ABOUT
       </Link>
       <Link
         href="https://github.com/amy-jung/collectivedaoarchives.catalog"
