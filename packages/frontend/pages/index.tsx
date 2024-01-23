@@ -49,7 +49,7 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
       <div className="container mx-auto w-[1350px] max-w-[90%] mt-14">
         <div className="mb-12">
           <Link href="/records" className="font-bold text-2xl link-hover">
-            See All records {">"}
+            See All Records {">"}
           </Link>
         </div>
         <div className="grid md:grid-cols-3 gap-8">
