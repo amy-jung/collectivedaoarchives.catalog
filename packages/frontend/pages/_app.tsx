@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 import NextNProgress from "nextjs-progressbar";
+import { Toaster } from "react-hot-toast";
 import { WagmiConfig } from "wagmi";
 import { Footer } from "~~/components/Footer";
 import { Header } from "~~/components/Header";
-import { Toaster } from "react-hot-toast";
 import { chains, wagmiConfig } from "~~/services/web3/wagmiConnectors";
 import "~~/styles/globals.css";
 
@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
-        <NextNProgress color="#36456C" />
+        <NextNProgress color="#36456C" options={{ showSpinner: false }} />
         <div className={`flex flex-col min-h-screen ${inter.className}`}>
           <Header />
           <main className="relative flex flex-col flex-1">
