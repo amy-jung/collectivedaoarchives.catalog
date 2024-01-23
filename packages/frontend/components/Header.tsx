@@ -9,6 +9,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 export const Header = () => {
   const pathname = usePathname();
   const isMainPage = pathname === "/";
+  const isContributePage = pathname === "/contribute";
 
   return (
     <div className="flex justify-between items-center px-12 py-6 bg-accent">
@@ -34,9 +35,11 @@ export const Header = () => {
             <Link href="/contribute">Contribute</Link>
           </li>
         </ul>
-        <div className="rainbow-kit-connect">
-          <ConnectButton chainStatus="icon" label="Connect" />
-        </div>
+        {isContributePage && (
+          <div className="rainbow-kit-connect">
+            <ConnectButton chainStatus="icon" label="Connect" />
+          </div>
+        )}
       </div>
     </div>
   );

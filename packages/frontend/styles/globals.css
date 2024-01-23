@@ -75,8 +75,9 @@ a:hover:not(.link) {
 }
 
 [data-rk] .rainbow-kit-connect [data-testid="rk-connect-button"] {
-  background: hsl(var(--p));
-  border-radius: 5px;
+  @apply btn;
+  @apply btn-primary;
+  @apply rounded-none;
 }
 
 .link-boxed {
