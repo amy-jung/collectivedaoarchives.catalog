@@ -78,3 +78,9 @@ a:hover:not(.link) {
   background: hsl(var(--p));
   border-radius: 5px;
 }
+
+.link-boxed {
+  @apply p-2;
+  background-color: #ebeff3;
+  color: #546474;
+}
