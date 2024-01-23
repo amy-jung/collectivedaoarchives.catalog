@@ -60,7 +60,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount }) => {
               onSearch();
             }
           }}
-          className="grow p-2 px-6 border-2 border-primary"
+          className="grow p-2 px-6 border-2 border-primary outline-0"
           placeholder={`Search...`}
         />
         <button className="btn btn-primary rounded-none w-[100px]" onClick={onSearch}>
