@@ -38,7 +38,7 @@ const RecordsIndex: NextPage<RecordsProps> = ({ records, totalCount }) => {
       </div>
       <div className="flex justify-between items-center mt-8 gap-4">
         <button
-          className={`btn btn-primary ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
+          className={`btn btn-primary rounded-none ${currentPage === 1 ? "cursor-not-allowed" : ""}`}
           onClick={() => {
             if (currentPage > 1) {
               goToPage(currentPage - 1);
@@ -54,7 +54,7 @@ const RecordsIndex: NextPage<RecordsProps> = ({ records, totalCount }) => {
         </p>
 
         <button
-          className={`btn btn-primary ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
+          className={`btn btn-primary rounded-none ${currentPage === totalPages ? "cursor-not-allowed" : ""}`}
           onClick={() => {
             if (currentPage < totalPages) {
               goToPage(currentPage + 1);
