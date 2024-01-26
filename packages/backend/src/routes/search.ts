@@ -29,6 +29,8 @@ router.get("/", async (req: Request, res: Response) => {
     "author-asc": Prisma.sql`CASE WHEN NULLIF(author, '') IS NULL THEN 1 ELSE 0 END, LOWER("author") ASC`,
     "organization-desc": Prisma.sql`CASE WHEN NULLIF(organization, '') IS NULL THEN 1 ELSE 0 END, LOWER("organization") DESC`,
     "organization-asc": Prisma.sql`CASE WHEN NULLIF(organization, '') IS NULL THEN 1 ELSE 0 END, LOWER("organization") ASC`,
+    "title-desc": Prisma.sql`title DESC`,
+    "title-asc": Prisma.sql`title ASC`,
   };
 
   if (!Object.keys(sortByToSql).includes(sortBy)) {
@@ -37,9 +39,12 @@ router.get("/", async (req: Request, res: Response) => {
 
   let sortSql = sortByToSql[sortBy as keyof typeof sortByToSql];
 
-  let organization = "";
-  if (req.query.organization !== undefined) {
-    organization = String(req.query.organization).toLowerCase();
+  let organizations: string[] = [];
+  if (req.query.organizations !== undefined && req.query.organizations !== "") {
+    organizations = String(req.query.organizations)
+      .split(",")
+      .filter(org => org !== "")
+      .map((org: string) => org.toLowerCase());
   }
 
   let author = "";
@@ -47,9 +52,22 @@ router.get("/", async (req: Request, res: Response) => {
     author = String(req.query.author).toLowerCase();
   }
 
-  let categoryId;
-  if (req.query.categoryId !== undefined) {
-    categoryId = Number(req.query.categoryId);
+  let categoryIds: number[] = [];
+  if (req.query.categoryIds !== undefined && req.query.categoryIds !== "") {
+    categoryIds = String(req.query.categoryIds)
+      .split(",")
+      .map(id => Number(id))
+      .filter(id => !isNaN(id));
+  }
+
+  let dateFrom;
+  if (req.query.dateFrom !== undefined && req.query.dateFrom !== "") {
+    dateFrom = new Date(req.query.dateFrom as string);
+  }
+
+  let dateTo;
+  if (req.query.dateTo !== undefined && req.query.dateTo !== "") {
+    dateTo = new Date(req.query.dateTo as string);
   }
 
   try {
@@ -59,14 +77,25 @@ router.get("/", async (req: Request, res: Response) => {
     if (q) {
       searchConditions.push(Prisma.sql`"textSearch" @@ websearch_to_tsquery('english', ${q})`);
     }
-    if (organization) {
-      searchConditions.push(Prisma.sql`lower(organization) = ${organization}`);
+
+    if (organizations.length > 0) {
+      searchConditions.push(Prisma.sql`lower(organization) IN (${Prisma.join(organizations)})`);
     }
+
     if (author) {
       searchConditions.push(Prisma.sql`lower(author) = ${author}`);
     }
-    if (categoryId) {
-      searchConditions.push(Prisma.sql`"categoryId" = ${categoryId}`);
+
+    if (categoryIds.length > 0) {
+      searchConditions.push(Prisma.sql`"categoryId" IN (${Prisma.join(categoryIds)})`);
+    }
+
+    if (dateFrom) {
+      searchConditions.push(Prisma.sql`date >= ${dateFrom}`);
+    }
+
+    if (dateTo) {
+      searchConditions.push(Prisma.sql`date <= ${dateTo}`);
     }
 
     const where = searchConditions.length ? Prisma.sql`where ${Prisma.join(searchConditions, " and ")}` : Prisma.empty;

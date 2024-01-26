@@ -20,7 +20,7 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
     <div className="container mx-auto w-[1150px] max-w-[90%] mt-14 pb-20 md:pb-44">
       <div className="border-b-200 border-b-[10px] mb-10">
         <h1 className="font-bold text-xl md:text-5xl mb-4 !leading-[1.1]">{record.title}</h1>
-        <Link href={`/search?organization=${record.organization}`}>
+        <Link href={`/search?organizations=${record.organization}`}>
           <span className="mb-8 block text-lg md:text-2xl">{record.organization}</span>
         </Link>
       </div>
@@ -34,7 +34,7 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
           <div>
             <span className="font-bold">Protocol:</span>
             <span className="block mt-3">
-              <Link href={`/search?organization=${record.organization}`} className="link-boxed">
+              <Link href={`/search?organizations=${record.organization}`} className="link-boxed">
                 {record.organization}
               </Link>
             </span>
@@ -53,7 +53,7 @@ const RecordPage: NextPage<RecordProps> = ({ record }) => {
             <span className="font-bold">Category:</span>
             <span className="block mt-3">
               {record.category ? (
-                <Link href={`/search?categoryId=${record.category.id}`} className="link-boxed">
+                <Link href={`/search?categoryIds=${record.category.id}`} className="link-boxed">
                   {record.category.name}
                 </Link>
               ) : (
