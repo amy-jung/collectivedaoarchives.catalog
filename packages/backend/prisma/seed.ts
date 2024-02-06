@@ -14,7 +14,7 @@ type CsvRecord = {
   content: string;
   organization: string;
   author: string;
-  category: string;
+  categoryId: string;
 };
 
 const generateSlug = (title: string): string => {
@@ -40,17 +40,20 @@ async function main() {
     .on("data", data => records.push(data))
     .on("end", async () => {
       console.log("records.csv parsed, seeding database with", records.length, "records");
+
       // Dedupe and create categories first
+      // Categories can be something like "Finance and Treasury, Product / Protocol Development'"
+      // For now, let's take the first one
       const categories = [
         ...new Set(
-          records.filter(record => record.category && record.category.trim() !== "").map(record => record.category),
+          records.filter(record => record.categoryId && record.categoryId.trim() !== "").map(record => record.categoryId.split(",")[0].trim())
         ),
       ];
 
       // Saving mapping on memory to save some queries
       const categoryMap: { [key: string]: number } = {};
 
-      console.log("Creating categories");
+      console.log("Creating categories", categories);
       for (const categoryName of categories) {
         const category = await prisma.category.upsert({
           where: { name: categoryName },
@@ -92,8 +95,10 @@ async function main() {
           author: string;
         };
 
-        if (categoryMap[record.category]) {
-          recordData.categoryId = categoryMap[record.category];
+        const categoryName = record.categoryId.split(",")[0].trim();
+        if (categoryMap[categoryName]) {
+          console.log(`---> 🏷️ ${categoryName}`);
+          recordData.categoryId = categoryMap[categoryName];
         }
 
         await prisma.record.create({
