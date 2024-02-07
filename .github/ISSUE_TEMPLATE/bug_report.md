@@ -34,5 +34,8 @@ If applicable, add screenshots to help explain your problem.
  - Browser [e.g. stock browser, safari]
  - Version [e.g. 22]
 
+**Wallet (If applicable):**
+ - Wallet: [e.g. Metamask, Walletconnect]
+
 **Additional context**
 Add any other context about the problem here.
