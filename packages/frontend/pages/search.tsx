@@ -59,6 +59,11 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
 
   const handleChangeOrganizations = (value: any) => {
     setSelectedOrganizations(value);
+    if (!value) {
+      setOrganizations("");
+      return;
+    }
+    setOrganizations(value.map((org: any) => org.value).join(","));
   };
 
   const handleChangeDates = (value: any) => {
