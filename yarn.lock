@@ -230,6 +230,7 @@ __metadata:
     "@types/node": 20.2.5
     "@types/react": 18.2.8
     "@types/react-dom": 18.2.4
+    "@vercel/analytics": ^1.1.3
     autoprefixer: 10.4.14
     daisyui: ^3.0.3
     dayjs: ^1.11.10
@@ -1566,6 +1567,15 @@ __metadata:
   peerDependencies:
     "@vanilla-extract/css": ^1.0.0
   checksum: 522b96afe856a72d76072ab41453edc35117772a6ac829c8a5ad09cddd69152e152b1cbda0b4344d50dbde59d0effa39301beb7acf319ef88f485966c89c80fd
+  languageName: node
+  linkType: hard
+
+"@vercel/analytics@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@vercel/analytics@npm:1.1.3"
+  dependencies:
+    server-only: ^0.0.1
+  checksum: 177e5a3264cbc4e8d257cccd1b4a8036f1eb4e436fb5ae87245b2f2c6a43251bb20c588a365f603437813bd24bdd6907ac94646c34cd67dfb4333bccfdd2949d
   languageName: node
   linkType: hard
 
@@ -7078,6 +7088,13 @@ __metadata:
     parseurl: ~1.3.3
     send: 0.18.0
   checksum: af57fc13be40d90a12562e98c0b7855cf6e8bd4c107fe9a45c212bf023058d54a1871b1c89511c3958f70626fff47faeb795f5d83f8cf88514dbaeb2b724464d
+  languageName: node
+  linkType: hard
+
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
   languageName: node
   linkType: hard
 
