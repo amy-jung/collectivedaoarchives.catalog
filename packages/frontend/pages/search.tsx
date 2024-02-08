@@ -45,6 +45,10 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   }, [categoryIds]);
 
   const handleChangeCategories = (value: any) => {
+    if (!value) {
+      setCategoryIds("");
+      return;
+    }
     setCategoryIds(value.map((category: any) => category.value).join(","));
   };
 
@@ -137,7 +141,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
       <div className="flex flex-col sm:flex-row w-full max-w-[1350px] mt-12">
         <div className="flex flex-col sm:flex-row w-[300px]">
           <Select
-            value={selectedCategories}
+            value={selectedCategories?.length > 0 ? selectedCategories : null}
             primaryColor="#1E1E1E"
             placeholder="Categories"
             isMultiple={true}
@@ -149,7 +153,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
         </div>
         <div className="flex flex-col sm:flex-row w-[300px]">
           <Select
-            value={selectedOrganizations}
+            value={selectedOrganizations?.length > 0 ? selectedOrganizations : null}
             primaryColor="#1E1E1E"
             placeholder="Organizations"
             isMultiple={true}
