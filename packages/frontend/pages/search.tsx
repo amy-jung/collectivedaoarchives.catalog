@@ -139,32 +139,48 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
         </button>
       </div>
       <div className="flex flex-col sm:flex-row w-full max-w-[1350px] mt-12">
-        <div className="flex flex-col sm:flex-row w-[300px]">
-          <Select
-            value={selectedCategories?.length > 0 ? selectedCategories : null}
-            primaryColor="#1E1E1E"
-            placeholder="Categories"
-            isMultiple={true}
-            onChange={handleChangeCategories}
-            options={categories.map(category => {
-              return { value: category.id, label: category.name };
-            })}
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row w-[300px]">
-          <Select
-            value={selectedOrganizations?.length > 0 ? selectedOrganizations : null}
-            primaryColor="#1E1E1E"
-            placeholder="Organizations"
-            isMultiple={true}
-            onChange={handleChangeOrganizations}
-            options={organizationsData.map(org => {
-              return { value: org, label: org };
-            })}
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row w-[300px]">
-          <Datepicker value={{ startDate: dateFrom, endDate: dateTo }} onChange={handleChangeDates} />
+        <div className="flex flex-col sm:flex-row">
+          <div className="flex flex-col sm:flex-row w-[300px] cursor-pointer">
+            <Select
+              value={selectedCategories?.length > 0 ? selectedCategories : null}
+              placeholder="Categories"
+              primaryColor="#1E1E1E"
+              isMultiple={true}
+              classNames={{
+                menu: "absolute z-10 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700 bg-[#EEEEEE]",
+                menuButton: () => "flex bg-primary text-white",
+                listItem: () =>
+                  "block transition duration-200 px-2 py-2 cursor-pointer select-none truncate rounded text-gray-500 hover:bg-base-100",
+                tagItemIcon: "w-3 h-3 mt-0.5 fill-primary",
+              }}
+              onChange={handleChangeCategories}
+              options={categories.map(category => {
+                return { value: category.id, label: category.name };
+              })}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row w-[300px]">
+            <Select
+              value={selectedOrganizations?.length > 0 ? selectedOrganizations : null}
+              placeholder="Organizations"
+              isMultiple={true}
+              classNames={{
+                menu: "absolute z-10 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700 bg-[#EEEEEE]",
+                menuButton: () => "flex bg-primary text-white",
+                listItem: () =>
+                  "block transition duration-200 px-2 py-2 cursor-pointer select-none truncate rounded text-gray-500 hover:bg-base-100",
+                tagItemIcon: "w-3 h-3 mt-0.5 fill-primary",
+              }}
+              primaryColor="#1E1E1E"
+              onChange={handleChangeOrganizations}
+              options={organizationsData.map(org => {
+                return { value: org, label: org };
+              })}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row w-[300px]">
+            <Datepicker value={{ startDate: dateFrom, endDate: dateTo }} onChange={handleChangeDates} />
+          </div>
         </div>
         <div className="flex flex-col sm:flex-row w-[200px]">
           <select className="select select-bordered select-primary" onChange={handleChangeSortBy}>
