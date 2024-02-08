@@ -249,7 +249,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   return (
     <div>
       {emptyResults && (
-        <div className="absolute w-[600px] h-[660px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:600px]" />
+        <div className="absolute w-[300px] h-[330px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:300px]" />
       )}
       {SearchForm}
       {emptyResults ? <EmptyResults /> : SearchResult}
