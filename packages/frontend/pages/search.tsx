@@ -45,6 +45,10 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   }, [categoryIds]);
 
   const handleChangeCategories = (value: any) => {
+    if (!value) {
+      setCategoryIds("");
+      return;
+    }
     setCategoryIds(value.map((category: any) => category.value).join(","));
   };
 
@@ -134,36 +138,63 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
           {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
         </button>
       </div>
-      <div className="flex flex-col sm:flex-row w-full max-w-[1350px] mt-12">
-        <div className="flex flex-col sm:flex-row w-[300px]">
-          <Select
-            value={selectedCategories}
-            primaryColor="#1E1E1E"
-            placeholder="Categories"
-            isMultiple={true}
-            onChange={handleChangeCategories}
-            options={categories.map(category => {
-              return { value: category.id, label: category.name };
-            })}
-          />
+      <div className="flex flex-col md:flex-row w-full max-w-[1350px] mt-12 justify-between">
+        <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col sm:flex-row sm:min-w-[300px] grow cursor-pointer border-2 border-black bg-primary">
+            <Select
+              value={selectedCategories?.length > 0 ? selectedCategories : null}
+              placeholder="Categories"
+              primaryColor="#1E1E1E"
+              isMultiple={true}
+              classNames={{
+                menu: "absolute z-10 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700 bg-[#EEEEEE]",
+                menuButton: () => "flex bg-primary text-white py-1",
+                listItem: () =>
+                  "block transition duration-200 px-2 py-2 cursor-pointer select-none truncate rounded text-gray-500 hover:bg-base-100",
+                tagItemIcon: "w-3 h-3 mt-0.5 fill-primary",
+              }}
+              onChange={handleChangeCategories}
+              options={categories.map(category => {
+                return { value: category.id, label: category.name };
+              })}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row sm:min-w-[300px] grow cursor-pointer border-2 border-black bg-primary">
+            <Select
+              value={selectedOrganizations?.length > 0 ? selectedOrganizations : null}
+              placeholder="Organizations"
+              isMultiple={true}
+              classNames={{
+                menu: "absolute z-10 w-full bg-white shadow-lg border rounded py-1 mt-1.5 text-sm text-gray-700 bg-[#EEEEEE]",
+                menuButton: () => "flex bg-primary text-white py-1",
+                listItem: () =>
+                  "block transition duration-200 px-2 py-2 cursor-pointer select-none truncate rounded text-gray-500 hover:bg-base-100",
+                tagItemIcon: "w-3 h-3 mt-0.5 fill-primary",
+              }}
+              primaryColor="#1E1E1E"
+              onChange={handleChangeOrganizations}
+              options={organizationsData.map(org => {
+                return { value: org, label: org };
+              })}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row sm:min-w-[500px] grow border-2 border-black bg-primary">
+            <Datepicker
+              value={{ startDate: dateFrom, endDate: dateTo }}
+              onChange={handleChangeDates}
+              placeholder="Date"
+              classNames={{
+                input: () =>
+                  "outline-none relative cursor-pointer transition-all duration-300 py-[12px] pl-4 pr-14 w-full placeholder-white bg-primary text-white",
+              }}
+            />
+          </div>
         </div>
-        <div className="flex flex-col sm:flex-row w-[300px]">
-          <Select
-            value={selectedOrganizations}
-            primaryColor="#1E1E1E"
-            placeholder="Organizations"
-            isMultiple={true}
-            onChange={handleChangeOrganizations}
-            options={organizationsData.map(org => {
-              return { value: org, label: org };
-            })}
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row w-[300px]">
-          <Datepicker value={{ startDate: dateFrom, endDate: dateTo }} onChange={handleChangeDates} />
-        </div>
-        <div className="flex flex-col sm:flex-row w-[200px]">
-          <select className="select select-bordered select-primary" onChange={handleChangeSortBy}>
+        <div className="flex flex-col md:flex-row">
+          <select
+            className="select select-bordered select-primary border-2 border-black rounded-none focus:outline-0"
+            onChange={handleChangeSortBy}
+          >
             {sortByOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -218,7 +249,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   return (
     <div>
       {emptyResults && (
-        <div className="absolute w-[600px] h-[660px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:600px]" />
+        <div className="absolute w-[300px] h-[330px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:300px]" />
       )}
       {SearchForm}
       {emptyResults ? <EmptyResults /> : SearchResult}
