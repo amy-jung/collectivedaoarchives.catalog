@@ -6,6 +6,10 @@ The Collective DAO Catalog is an open source database that captures, indexes, an
 
 **Contribute Technical Issues or Suggest Features:** If you find a bug or if you're interested in extending the functionality and features of the platform, create a Github issue (link).
 
+If you found the Collective DAO Catalog useful, consider donating to help cover our maintenance costs ♥️
+ETH Mainnet: daocatalog.eth
+OPTIMISM: 0xEb31303Be09e9279F2046e6019502901AB2B6437
+
 ---
 
 ## Development
