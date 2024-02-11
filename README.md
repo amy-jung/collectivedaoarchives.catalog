@@ -1,8 +1,8 @@
 # Collective DAO Catalog
-The Collective DAO Catalog is an open source database that captures, indexes, and archives various challenges and events from existing DAOs. Indviduals can query across all DAOs, bringing qualitative information of DAO Events into one searchable, source of truth. By building the most reliable open source database where anyone can contribute, integrate and extend the data, we can use the power of collective intelligence to highlight patterns and improve the development of new and existing DAOs.
+The Collective DAO Catalog is an open source database that captures, indexes, and archives various discussions from existing DAOs. Indviduals can query across all DAOs, bringing qualitative information of DAO Events into one searchable, source of truth. By building the most reliable open source database where anyone can contribute, integrate and extend the data, we can use the power of collective intelligence to highlight patterns and improve the development of new and existing DAOs.
 
 ## Contributing
-**Contribute Content:** If you're interested in contributing to the database, submit links to important DAO Events on our [Contribute page](https://www.daocatalog.xyz/contribute). More details on the Collective DAO Catalog can be found in [our Wiki.](https://github.com/amy-jung/daocollective.archives/wiki/) If you're having any issues, create a Github issue.
+**Contribute Content:** If you're interested in contributing to the database, signal important DAO Events by submitting the link on our [Contribute page](https://www.daocatalog.xyz/contribute). More details on the Collective DAO Catalog can be found in [our Wiki.](https://github.com/amy-jung/daocollective.archives/wiki/) If you're having any issues, create a Github issue.
 
 **Contribute Technical Issues or Suggest Features:** If you find a bug or if you're interested in extending the functionality and features of the platform, create a Github issue (link).
 
