@@ -141,9 +141,9 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
           {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
         </button>
       </div>
-      <div className="flex flex-col md:flex-row w-full max-w-[1350px] mt-12 justify-between">
+      <div className="flex flex-col xl:flex-row w-full max-w-[1350px] mt-12 justify-between gap-2">
         <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col sm:flex-row sm:min-w-[300px] grow cursor-pointer border-2 border-black bg-primary">
+          <div className="flex flex-col sm:flex-row grow xl:min-w-[250px] cursor-pointer border-2 border-black bg-primary">
             <Select
               value={selectedCategories?.length > 0 ? selectedCategories : null}
               placeholder="Categories"
@@ -162,7 +162,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
               })}
             />
           </div>
-          <div className="flex flex-col sm:flex-row sm:min-w-[300px] grow cursor-pointer border-2 border-black bg-primary">
+          <div className="flex flex-col sm:flex-row grow xl:min-w-[250px] cursor-pointer border-2 border-black bg-primary">
             <Select
               value={selectedOrganizations?.length > 0 ? selectedOrganizations : null}
               placeholder="Organizations"
@@ -181,7 +181,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
               })}
             />
           </div>
-          <div className="flex flex-col sm:flex-row sm:min-w-[500px] grow border-2 border-black bg-primary">
+          <div className="flex flex-col sm:flex-row grow xl:min-w-[450px] border-2 border-black bg-primary">
             <Datepicker
               value={{ startDate: dateFrom, endDate: dateTo }}
               onChange={handleChangeDates}
