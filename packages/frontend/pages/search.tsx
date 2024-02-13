@@ -134,7 +134,10 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
           className="grow p-2 px-6 border-2 border-primary outline-0"
           placeholder={`Search...`}
         />
-        <button className="btn btn-primary rounded-none w-[100px]" onClick={onSearch}>
+        <button
+          className="btn btn-primary rounded-none w-full h-auto min-h-[2.5rem] sm:min-h-[3rem] sm:w-[100px]"
+          onClick={onSearch}
+        >
           {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
         </button>
       </div>
@@ -207,7 +210,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   );
 
   const SearchResult = (
-    <div className="container mx-auto w-[1350px] max-w-[100%] mt-14 mb-24">
+    <div className="container mx-auto w-[1350px] max-w-[90%] mt-14 mb-24">
       <div className="grid md:grid-cols-3 gap-8">
         {records?.map(record => (
           <RecordTeaser key={record.id} record={record} showHeadline={true} />
