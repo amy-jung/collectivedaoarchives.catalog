@@ -161,7 +161,7 @@ const Contribute: NextPage = () => {
         <h2 className="text-xl mt-2">Submit a link to a DAO event</h2>
         <div className="flex flex-col mt-12">
           <h3 className="flex font-bold">Submit a URL page</h3>
-          <div className="flex flex-row w-full mt-2">
+          <div className="flex flex-col md:flex-row w-full mt-2 gap-2">
             <input
               type="text"
               value={url}
@@ -170,11 +170,11 @@ const Contribute: NextPage = () => {
               placeholder="http://"
             />
             {address ? (
-              <button className="btn btn-primary rounded-none w-[100px]" onClick={onSubmitUrl}>
+              <button className="btn btn-primary rounded-none w-[100px] self-end" onClick={onSubmitUrl}>
                 {!isSubmitting ? "SUBMIT" : <span className="loading loading-spinner"></span>}
               </button>
             ) : (
-              <button className="btn btn-primary rounded-none w-[200px]" disabled>
+              <button className="btn btn-primary rounded-none w-[200px] self-end" disabled>
                 Connect wallet
               </button>
             )}
