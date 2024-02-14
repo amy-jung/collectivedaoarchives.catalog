@@ -134,13 +134,16 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
           className="grow p-2 px-6 border-2 border-primary outline-0"
           placeholder={`Search...`}
         />
-        <button className="btn btn-primary rounded-none w-[100px]" onClick={onSearch}>
+        <button
+          className="btn btn-primary rounded-none w-full h-auto min-h-[2.5rem] sm:min-h-[3rem] sm:w-[100px]"
+          onClick={onSearch}
+        >
           {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
         </button>
       </div>
-      <div className="flex flex-col md:flex-row w-full max-w-[1350px] mt-12 justify-between">
+      <div className="flex flex-col xl:flex-row w-full max-w-[1350px] mt-12 justify-between gap-2">
         <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col sm:flex-row sm:min-w-[300px] grow cursor-pointer border-2 border-black bg-primary">
+          <div className="flex flex-col sm:flex-row grow xl:min-w-[250px] cursor-pointer border-2 border-black bg-primary">
             <Select
               value={selectedCategories?.length > 0 ? selectedCategories : null}
               placeholder="Categories"
@@ -159,7 +162,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
               })}
             />
           </div>
-          <div className="flex flex-col sm:flex-row sm:min-w-[300px] grow cursor-pointer border-2 border-black bg-primary">
+          <div className="flex flex-col sm:flex-row grow xl:min-w-[250px] cursor-pointer border-2 border-black bg-primary">
             <Select
               value={selectedOrganizations?.length > 0 ? selectedOrganizations : null}
               placeholder="Organizations"
@@ -178,7 +181,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
               })}
             />
           </div>
-          <div className="flex flex-col sm:flex-row sm:min-w-[500px] grow border-2 border-black bg-primary">
+          <div className="flex flex-col sm:flex-row grow xl:min-w-[450px] border-2 border-black bg-primary">
             <Datepicker
               value={{ startDate: dateFrom, endDate: dateTo }}
               onChange={handleChangeDates}
@@ -207,7 +210,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   );
 
   const SearchResult = (
-    <div className="container mx-auto w-[1350px] max-w-[100%] mt-14 mb-24">
+    <div className="container mx-auto w-[1350px] max-w-[90%] mt-14 mb-24">
       <div className="grid md:grid-cols-3 gap-8">
         {records?.map(record => (
           <RecordTeaser key={record.id} record={record} showHeadline={true} />
@@ -249,7 +252,7 @@ const Search: NextPage<RecordsProps> = ({ records, totalCount, categories, organ
   return (
     <div>
       {emptyResults && (
-        <div className="absolute w-[300px] h-[330px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:300px]" />
+        <div className="hidden sm:block absolute w-[300px] h-[330px] right-0 bottom-0 bg-[url('/assets/filler_logo.png')] bg-no-repeat bg-right-bottom bg-[length:300px]" />
       )}
       {SearchForm}
       {emptyResults ? <EmptyResults /> : SearchResult}

@@ -40,7 +40,10 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
               className="grow p-2 px-6 border-2 border-primary outline-0"
               placeholder={`Search all ${totalCount} Records...`}
             />
-            <button className="btn btn-primary rounded-none w-[100px]" onClick={onSearch}>
+            <button
+              className="btn btn-primary rounded-none w-full h-auto min-h-[2.5rem] sm:min-h-[3rem] sm:w-[100px]"
+              onClick={onSearch}
+            >
               {!isSearchLoading ? "SEARCH" : <span className="loading loading-spinner"></span>}
             </button>
           </div>
