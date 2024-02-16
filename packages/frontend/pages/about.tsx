@@ -9,16 +9,14 @@ const About: NextPage = () => {
         <h1 className="font-bold text-2xl md:text-6xl mb-10 leading-none">THE COLLECTIVE DAO CATALOG</h1>
         <div className="text-lg md:text-2xl italic">
           <p className="bg-accent text-primary px-1 inline">
-            The Collective DAO Catalog is an open source database of off-chain, DAO historical events.
+            The Collective DAO Catalog is an open source database of high-signal DAO events.
           </p>
 
           <p className="my-8 md:my-14">
-            We believe there’s invaluable insight in off-chain DAO Events and their discussions. A DAO Event is any
-            relevant occurrence in a DAO or DAO-adjacent org’s lifecycle, currently indicated by a public document on
-            any platform like Discourse or Twitter. Our big vision is to expand Optimism's original Collective Archives
-            by building the largest, most reliable database for querying across all DAOs, bringing qualitative
-            information of DAO Events into one searchable, source of truth. This enables anyone to contribute,
-            integrate, and extend ways to engage with the data.
+            The Collective DAO Catalog is an open source database that captures, indexes, and archives various events from existing DAOs.
+            A DAO Event is any relevant occurrence in a DAO or DAO-adjacent org’s lifecycle, currently indicated by a public document on
+            any platform like Discourse or Twitter. Indviduals can query across all DAOs, bringing qualitative information of DAO Events 
+            into one searchable, source of truth. This enables anyone to contribute, integrate, and extend ways to engage with the data.
           </p>
 
           <p className="mb-8 md:mb-14">
