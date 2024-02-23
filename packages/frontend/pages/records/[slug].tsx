@@ -1,19 +1,11 @@
 import Link from "next/link";
 import { GetServerSideProps, NextPage } from "next";
+import { formatDate } from "../../utils/date";
 
 interface RecordProps {
   // ToDo. Define types (swagger on backend?)
   record: any;
 }
-
-const formatDate = (dateString: string) => {
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return new Date(dateString).toLocaleDateString("en-US", options);
-};
 
 const RecordPage: NextPage<RecordProps> = ({ record }) => {
   return (
