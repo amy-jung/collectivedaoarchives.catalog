@@ -14,7 +14,7 @@ router.get("/", async (req: Request, res: Response) => {
   try {
     const offset = (currentPage - 1) * PAGE_SIZE;
     [records, totalCount] = await Promise.all([
-      prisma.record.findMany({ take: PAGE_SIZE, skip: offset, orderBy: [{ date: "desc" }] }),
+      prisma.record.findMany({ take: PAGE_SIZE, skip: offset, orderBy: [{ date: "desc" }], where: { date: { not: null } } }),
       prisma.record.count(),
     ]);
 
