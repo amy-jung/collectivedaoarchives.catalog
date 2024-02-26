@@ -1,5 +1,6 @@
 import categoryRoutes from "./category";
 import contributeRoutes from "./contribute";
+import homeRoutes from "./home";
 import organizationRoutes from "./organization";
 import recordRoutes from "./records";
 import searchRoutes from "./search";
@@ -12,6 +13,7 @@ router.get("/", async (req, res) => {
   res.json({ hello: "world!" });
 });
 
+router.use("/home", homeRoutes);
 router.use("/records", recordRoutes);
 router.use("/search", searchRoutes);
 router.use("/contribute", contributeRoutes);
