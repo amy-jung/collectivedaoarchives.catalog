@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatDate } from "../utils/date";
 
 export const RecordTeaser = ({ record, showHeadline = false }: { record: any; showHeadline?: boolean }) => (
   <div className="border-t-base-200 border-t-[10px] py-6">
@@ -12,6 +13,11 @@ export const RecordTeaser = ({ record, showHeadline = false }: { record: any; sh
         <span className="text-lg md:text-2xl">{record.organization}</span>
       </Link>
     </p>
+    {record.date && (
+      <p className="mt-2">
+        <span className="text-lg md:text-2xl">{formatDate(record.date)}</span>
+      </p>
+    )}
     {showHeadline && (
       <p className="mt-4">
         <span className="italic break-words" dangerouslySetInnerHTML={{ __html: record.headline }}></span>
