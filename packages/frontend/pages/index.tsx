@@ -67,12 +67,13 @@ const Home: NextPage<RecordsProps> = ({ records, totalCount }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async context => {
+  const currentPage = Number(context.query.page) || 1;
   // ToDo. Define types (swagger on backend?)
   let records: any[] = [];
   let totalCount: number = 0;
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/home`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/records?page=${currentPage}`);
     if (!res.ok) {
       throw new Error(res.statusText);
     }
